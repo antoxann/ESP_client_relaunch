@@ -35,6 +35,16 @@ myApp.config(function($stateProvider, $urlRouterProvider, $controllerProvider){
               }]
             }
         })
+        .state('app.device', {
+            url: "device",
+            templateUrl: "app/pages/device/app.device.html",
+            controller: 'DeviceController',
+            resolve: {
+              loadMyCtrl: ['$ocLazyLoad', function($ocLazyLoad) {
+                    return $ocLazyLoad.load('app/pages/device/DeviceController.js');
+              }]
+            }
+        })
         .state('app.charts', {
             url: "charts",
             templateUrl: "app/pages/charts/app.charts.html",
@@ -52,6 +62,16 @@ myApp.config(function($stateProvider, $urlRouterProvider, $controllerProvider){
             resolve: {
               loadMyCtrl: ['$ocLazyLoad', function($ocLazyLoad) {
                     return $ocLazyLoad.load('app/pages/rooms/RoomsController.js');
+              }]
+            }
+        })
+        .state('app.room', {
+            url: "room",
+            templateUrl: "app/pages/room/app.room.html",
+            controller: 'RoomController',
+            resolve: {
+              loadMyCtrl: ['$ocLazyLoad', function($ocLazyLoad) {
+                    return $ocLazyLoad.load('app/pages/room/RoomController.js');
               }]
             }
         })
