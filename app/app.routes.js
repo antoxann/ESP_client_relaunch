@@ -25,6 +25,46 @@ myApp.config(function($stateProvider, $urlRouterProvider, $controllerProvider){
               }]
             }
         })
+        .state('app.devices', {
+            url: "devices",
+            templateUrl: "app/pages/devices/app.devices.html",
+            controller: 'DevicesController',
+            resolve: {
+              loadMyCtrl: ['$ocLazyLoad', function($ocLazyLoad) {
+                    return $ocLazyLoad.load('app/pages/devices/DevicesController.js');
+              }]
+            }
+        })
+        .state('app.charts', {
+            url: "charts",
+            templateUrl: "app/pages/charts/app.charts.html",
+            controller: 'ChartsController',
+            resolve: {
+              loadMyCtrl: ['$ocLazyLoad', function($ocLazyLoad) {
+                    return $ocLazyLoad.load('app/pages/charts/ChartsController.js');
+              }]
+            }
+        })
+        .state('app.rooms', {
+            url: "rooms",
+            templateUrl: "app/pages/rooms/app.rooms.html",
+            controller: 'RoomsController',
+            resolve: {
+              loadMyCtrl: ['$ocLazyLoad', function($ocLazyLoad) {
+                    return $ocLazyLoad.load('app/pages/rooms/RoomsController.js');
+              }]
+            }
+        })
+        .state('app.simulation', {
+            url: "simulation",
+            templateUrl: "app/pages/simulation/app.simulation.html",
+            controller: 'SimulationController',
+            resolve: {
+              loadMyCtrl: ['$ocLazyLoad', function($ocLazyLoad) {
+                    return $ocLazyLoad.load('app/pages/simulation/SimulationController.js');
+              }]
+            }
+        })
         
       .state('login', {
           url: "/login",
