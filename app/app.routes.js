@@ -41,7 +41,8 @@ myApp.config(function($stateProvider, $urlRouterProvider, $controllerProvider){
             controller: 'DeviceController',
             resolve: {
               loadMyCtrl: ['$ocLazyLoad', function($ocLazyLoad) {
-                    return $ocLazyLoad.load('app/pages/device/DeviceController.js');
+                    return $ocLazyLoad.load(['app/pages/device/DeviceController.js',
+                      'app/components/device/deviceDirective.js']);
               }]
             }
         })
