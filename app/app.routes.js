@@ -85,6 +85,16 @@ myApp.config(function($stateProvider, $urlRouterProvider, $controllerProvider){
               }]
             }
         })
+        .state('app.profile', {
+            url: "profile",
+            templateUrl: "app/pages/profile/app.profile.html",
+            controller: 'ProfileController',
+            resolve: {
+              loadMyCtrl: ['$ocLazyLoad', function($ocLazyLoad) {
+                    return $ocLazyLoad.load(['app/pages/profile/ProfileController.js']);
+              }]
+            }
+        })
         
       .state('login', {
           url: "/login",
