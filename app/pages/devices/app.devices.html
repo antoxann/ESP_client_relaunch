@@ -9,6 +9,63 @@
                 <div class="ah-label hidden-xs palette-White text">List of your devices:</div>
             </div>
 
+            <ul class="ah-actions actions a-alt">
+                <li>
+                    <a href="">
+                        <i class="zmdi zmdi-plus" data-toggle="modal" href="#addDeviceModal"></i>
+                    </a>
+                </li>
+            </ul>
+
+            <!-- Add device modal -->
+            <div class="modal fade" id="addDeviceModal" tabindex="-1" role="dialog" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Add device</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="card-body card-padding">
+                                <div class="form-group">
+                                    <label for="inputEmail3" class="col-sm-3 control-label">Device name</label>
+                                    <div class="col-sm-9">
+                                        <div class="fg-line">
+                                            <input type="email" class="form-control input-sm" id="inputEmail3" placeholder="Device name">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputPassword3" class="col-sm-3 control-label">MacAddress</label>
+                                    <div class="col-sm-9">
+
+                                        <div class="fg-line">
+                                            <input type="password" class="form-control input-sm" id="inputPassword3" placeholder="MacAddress">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputPassword3" class="col-sm-3 control-label">Room</label>
+                                    <div class="col-sm-9">
+
+                                        <div class="fg-line">
+                                            <select class="selectpicker">
+                                                <option>Mustard</option>
+                                                <option>Ketchup</option>
+                                                <option>Relish</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-link">Save device</button>
+                            <button type="button" class="btn btn-link" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div class="list-group lg-alt lg-even-black">
                 <div class="list-group-item media">
                     <div class="pull-right">
