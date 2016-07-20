@@ -31,7 +31,8 @@ myApp.config(function($stateProvider, $urlRouterProvider, $controllerProvider){
             controller: 'DevicesController',
             resolve: {
               loadMyCtrl: ['$ocLazyLoad', function($ocLazyLoad) {
-                    return $ocLazyLoad.load('app/pages/devices/DevicesController.js');
+                    return $ocLazyLoad.load(['app/pages/devices/DevicesController.js',
+                      'app/components/device/deviceDirective.js']);
               }]
             }
         })
@@ -41,8 +42,7 @@ myApp.config(function($stateProvider, $urlRouterProvider, $controllerProvider){
             controller: 'DeviceController',
             resolve: {
               loadMyCtrl: ['$ocLazyLoad', function($ocLazyLoad) {
-                    return $ocLazyLoad.load(['app/pages/device/DeviceController.js',
-                      'app/components/device/deviceDirective.js']);
+                    return $ocLazyLoad.load('app/pages/device/DeviceController.js');
               }]
             }
         })
@@ -62,7 +62,8 @@ myApp.config(function($stateProvider, $urlRouterProvider, $controllerProvider){
             controller: 'RoomsController',
             resolve: {
               loadMyCtrl: ['$ocLazyLoad', function($ocLazyLoad) {
-                    return $ocLazyLoad.load('app/pages/rooms/RoomsController.js');
+                    return $ocLazyLoad.load(['app/pages/rooms/RoomsController.js',
+                      'app/components/room/roomDirective.js']);
               }]
             }
         })

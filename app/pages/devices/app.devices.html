@@ -1,80 +1,86 @@
 <section id="content">
-                <div class="container">
-                    <div class="c-header">
-                        <h2>Devices</h2>
+    <div class="container">
+        <div class="c-header">
+            <h2>Devices</h2>
+        </div>
+
+        <div class="card">
+            <div class="action-header palette-Teal-400 bg clearfix">
+                <div class="ah-label hidden-xs palette-White text">List of your devices:</div>
+            </div>
+
+            <div class="list-group lg-alt lg-even-black">
+                <div class="list-group-item media">
+                    <div class="pull-right">
+                        <ul class="actions">
+                            <li class="dropdown">
+                                <a href="" data-toggle="dropdown" aria-expanded="false">
+                                    <i class="zmdi zmdi-more-vert"></i>
+                                </a>
+
+                                <ul class="dropdown-menu dropdown-menu-right">
+                                    <li>
+                                        <a href="">Update</a>
+                                    </li>
+                                    <li>
+                                        <a href="">Delete</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
                     </div>
 
-                    <div class="card">
-                        <div class="action-header palette-Teal-400 bg clearfix">
-                            <div class="ah-label hidden-xs palette-White text">List of your devices:</div>
+                    <div class="pull-left">
+                        <div class="avatar-char palette-Green-400 bg">
+                            <i class="zmdi zmdi-check zmdi-hc-fw"></i>
                         </div>
+                    </div>
 
-                        <div class="list-group lg-alt lg-even-black" ui-sref="app.device">
-                            <div class="list-group-item media">
-                                <div class="pull-right">
-                                    <ul class="actions">
-                                        <li class="dropdown">
-                                            <a href="" data-toggle="dropdown" aria-expanded="false">
-                                                <i class="zmdi zmdi-more-vert"></i>
-                                            </a>
-
-                                            <ul class="dropdown-menu dropdown-menu-right">
-                                                <li>
-                                                    <a href="">Update</a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </div>
-
-                                <div class="pull-left">
-                                    <div class="avatar-char palette-Green-400 bg">
-                                        <i class="zmdi zmdi-check zmdi-hc-fw"></i>
-                                    </div>
-                                </div>
-
-                                <div class="media-body">
-                                    <div class="lgi-heading">DEVICE NAME
-                                    </div>
-                                    <ul class="lgi-attrs">
-                                        <li>Humidity: 40%</li>
-                                        <li>Last temperature: 23 C</li>
-                                    </ul>
-                                </div>
-                            </div>
-
-                            <div class="list-group-item media">
-
-                                <div class="pull-left">
-                                    <div class="avatar-char palette-Red-400 bg">
-                                        <i class="zmdi zmdi-close zmdi-hc-fw"></i>
-                                    </div>
-                                </div>
-
-                                <div class="pull-right">
-                                    <ul class="actions">
-                                        <li class="dropdown">
-                                            <a href="" data-toggle="dropdown" aria-expanded="false">
-                                                <i class="zmdi zmdi-more-vert"></i>
-                                            </a>
-
-                                            <ul class="dropdown-menu dropdown-menu-right">
-                                                <li>
-                                                    <a href="">Update</a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </div>
-
-                                <div class="media-body">
-                                    <div class="lgi-heading">DEVICE 2 NAME</div>
-                                    <ul class="lgi-attrs">
-                                        <li>Humidity: 50%</li>
-                                        <li>Last temperature: 27 C</li>
-                                    </ul>
-                                </div>
-                            </div>
+                    <div class="media-body" ui-sref="app.device">
+                        <div class="lgi-heading">DEVICE NAME
+                        </div>
+                        <ul class="lgi-attrs">
+                            <li>Humidity: 40%</li>
+                            <li>Last temperature: 23 C</li>
+                        </ul>
                     </div>
                 </div>
-            </section>
+
+                <div class="list-group-item media">
+
+                    <div class="pull-left">
+                        <div class="avatar-char palette-Red-400 bg">
+                            <i class="zmdi zmdi-close zmdi-hc-fw"></i>
+                        </div>
+                    </div>
+
+                    <div class="pull-right">
+                        <ul class="actions">
+                            <li class="dropdown">
+                                <a href="" data-toggle="dropdown" aria-expanded="false">
+                                    <i class="zmdi zmdi-more-vert"></i>
+                                </a>
+
+                                <ul class="dropdown-menu dropdown-menu-right">
+                                    <li>
+                                        <a href="">Update</a>
+                                    </li>
+                                    <li>
+                                        <a href="">Delete</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="media-body" ui-sref="app.device">
+                        <div class="lgi-heading">DEVICE 2 NAME</div>
+                        <ul class="lgi-attrs">
+                            <li>Humidity: 50%</li>
+                            <li>Last temperature: 27 C</li>
+                        </ul>
+                    </div>
+                </div>
+        </div>
+    </div>
+</section>
