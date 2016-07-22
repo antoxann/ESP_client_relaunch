@@ -1,5 +1,10 @@
-angular.module('myApp').controller("SignupController", function ($scope) {
+angular.module('myApp').controller("SignupController", function ($scope, AuthService) {
 	console.log("SignupController");
+    console.log(AuthService.isLoggedIn());
+
+    $scope.signup = function (username, email, password) {
+        AuthService.signup(username, email, password);
+    }
 
 	 //Add blue animated border and remove with condition when focus and blur
     if($('.fg-line')[0]) {

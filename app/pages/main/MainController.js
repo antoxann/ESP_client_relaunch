@@ -1,3 +1,4 @@
-angular.module('myApp').controller("MainController", function ($scope) {
+angular.module('myApp').controller("MainController", function ($scope, AuthService) {
     console.log("MainController");
+    console.log(AuthService.isLoggedIn());
 });
