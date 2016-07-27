@@ -1,7 +1,7 @@
 myApp.directive('device', function() {
   return {
     restrict: 'E',
-    templateUrl: 'app/components/device/device.html',
+    templateUrl: 'device',
     bindToController: {
     	device: '=obj'
     },

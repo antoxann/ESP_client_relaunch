@@ -7,7 +7,7 @@ myApp.config(function($stateProvider, $urlRouterProvider, $controllerProvider){
     $stateProvider
       .state('app', {
           url: "/",
-          templateUrl: "app/pages/layout/layout.html",
+          templateUrl: "layout",
           controller: 'LayoutController',
           resolve: {
             loadMyCtrl: ['$ocLazyLoad', function($ocLazyLoad) {
@@ -17,7 +17,7 @@ myApp.config(function($stateProvider, $urlRouterProvider, $controllerProvider){
       })
         .state('app.main', {
             url: "index",
-            templateUrl: "app/pages/main/app.main.html",
+            templateUrl: "app.main",
             controller: 'MainController',
             resolve: {
               loadMyCtrl: ['$ocLazyLoad', function($ocLazyLoad) {
@@ -27,7 +27,7 @@ myApp.config(function($stateProvider, $urlRouterProvider, $controllerProvider){
         })
         .state('app.devices', {
             url: "devices",
-            templateUrl: "app/pages/devices/app.devices.html",
+            templateUrl: "app.devices",
             controller: 'DevicesController',
             resolve: {
               loadMyCtrl: ['$ocLazyLoad', function($ocLazyLoad) {
@@ -38,7 +38,7 @@ myApp.config(function($stateProvider, $urlRouterProvider, $controllerProvider){
         })
         .state('app.device', {
             url: "device",
-            templateUrl: "app/pages/device/app.device.html",
+            templateUrl: "app.device",
             controller: 'DeviceController',
             resolve: {
               loadMyCtrl: ['$ocLazyLoad', function($ocLazyLoad) {
@@ -48,7 +48,7 @@ myApp.config(function($stateProvider, $urlRouterProvider, $controllerProvider){
         })
         .state('app.charts', {
             url: "charts",
-            templateUrl: "app/pages/charts/app.charts.html",
+            templateUrl: "app.charts",
             controller: 'ChartsController',
             resolve: {
               loadMyCtrl: ['$ocLazyLoad', function($ocLazyLoad) {
@@ -58,7 +58,7 @@ myApp.config(function($stateProvider, $urlRouterProvider, $controllerProvider){
         })
         .state('app.rooms', {
             url: "rooms",
-            templateUrl: "app/pages/rooms/app.rooms.html",
+            templateUrl: "app.rooms",
             controller: 'RoomsController',
             resolve: {
               loadMyCtrl: ['$ocLazyLoad', function($ocLazyLoad) {
@@ -69,7 +69,7 @@ myApp.config(function($stateProvider, $urlRouterProvider, $controllerProvider){
         })
         .state('app.room', {
             url: "room",
-            templateUrl: "app/pages/room/app.room.html",
+            templateUrl: "app.room",
             controller: 'RoomController',
             resolve: {
               loadMyCtrl: ['$ocLazyLoad', function($ocLazyLoad) {
@@ -79,7 +79,7 @@ myApp.config(function($stateProvider, $urlRouterProvider, $controllerProvider){
         })
         .state('app.simulation', {
             url: "simulation",
-            templateUrl: "app/pages/simulation/app.simulation.html",
+            templateUrl: "app.simulation",
             controller: 'SimulationController',
             resolve: {
               loadMyCtrl: ['$ocLazyLoad', function($ocLazyLoad) {
@@ -89,7 +89,7 @@ myApp.config(function($stateProvider, $urlRouterProvider, $controllerProvider){
         })
         .state('app.profile', {
             url: "profile",
-            templateUrl: "app/pages/profile/app.profile.html",
+            templateUrl: "app.profile",
             controller: 'ProfileController',
             resolve: {
               loadMyCtrl: ['$ocLazyLoad', function($ocLazyLoad) {
@@ -100,7 +100,7 @@ myApp.config(function($stateProvider, $urlRouterProvider, $controllerProvider){
         
       .state('login', {
           url: "/login",
-          templateUrl: "app/pages/login/login.html",
+          templateUrl: "login",
           controller: "LoginController",
           resolve: {
             loadMyCtrl: ['$ocLazyLoad', function($ocLazyLoad) {
@@ -110,7 +110,7 @@ myApp.config(function($stateProvider, $urlRouterProvider, $controllerProvider){
       })
       .state('signup', {
           url: "/signup",
-          templateUrl: "app/pages/signup/signup.html",
+          templateUrl: "signup",
           controller: "SignupController",
           resolve: {
             loadMyCtrl: ['$ocLazyLoad', function($ocLazyLoad) {

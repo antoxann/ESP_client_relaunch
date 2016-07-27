@@ -1,7 +1,7 @@
 myApp.directive('room', function() {
   return {
     restrict: 'E',
-    templateUrl: 'app/components/room/room.html',
+    templateUrl: 'room',
     bindToController: {
     	room: '=obj'
     },

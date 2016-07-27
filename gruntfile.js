@@ -10,6 +10,22 @@ module.exports = function(grunt) {
                 port : 3000,
                 async : true
             }
+        },
+        ngtemplates: {
+          app: { 
+            cwd: 'app/',               
+            src: ['pages/**/**.html', 'components/**/**.html'],
+            dest: 'dist/templates.js'
+          },
+          options: {
+            module: 'myApp',
+            url:    function(url) { 
+                //return url.replace('.html', '').replace('pages/', '').replace('components/', '');
+                var url = url.split("/");
+                return url[url.length-1].replace('.html', '');
+            },
+            htmlmin:  { collapseWhitespace: true, collapseBooleanAttributes: true }
+          }
         }
         // ,
         // less: {
@@ -50,12 +66,14 @@ module.exports = function(grunt) {
   
     // Load the plugin that provides the "less" task.
     grunt.loadNpmTasks('grunt-devserver');
+    grunt.loadNpmTasks('grunt-angular-templates');
+    grunt.loadNpmTasks('grunt-contrib-htmlmin');
     // grunt.loadNpmTasks('grunt-contrib-less');
     // grunt.loadNpmTasks('grunt-csssplit');
     // grunt.loadNpmTasks('grunt-contrib-watch');
     // grunt.loadNpmTasks('grunt-contrib-uglify');
   
     // Default task(s).
-    grunt.registerTask('default', ['devserver']);
+    grunt.registerTask('default', ['ngtemplates', 'devserver']);
     
 };
