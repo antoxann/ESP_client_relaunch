@@ -20,26 +20,24 @@ module.exports = function(grunt) {
           options: {
             module: 'myApp',
             url:    function(url) { 
-                //return url.replace('.html', '').replace('pages/', '').replace('components/', '');
                 var url = url.split("/");
                 return url[url.length-1].replace('.html', '');
             },
             htmlmin:  { collapseWhitespace: true, collapseBooleanAttributes: true }
           }
-        }
-        // ,
-        // less: {
-        //     development: {
-        //         options: {
-        //             paths: ["css"]
-        //         },
-        //         files: {
-        //             "css/app.css": "less/app.less",
-        //         },
-        //         cleancss: true
-        //     },
+        },
+        less: {
+            development: {
+                options: {
+                    paths: ["css"]
+                },
+                files: {
+                    "dist/app.css": "assets/less/app.less",
+                },
+                cleancss: true
+            },
 
-        // },
+        }
         // csssplit: {
         //     your_target: {
         //         src: ['css/app.css'],
@@ -68,12 +66,12 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-devserver');
     grunt.loadNpmTasks('grunt-angular-templates');
     grunt.loadNpmTasks('grunt-contrib-htmlmin');
-    // grunt.loadNpmTasks('grunt-contrib-less');
+    grunt.loadNpmTasks('grunt-contrib-less');
     // grunt.loadNpmTasks('grunt-csssplit');
     // grunt.loadNpmTasks('grunt-contrib-watch');
     // grunt.loadNpmTasks('grunt-contrib-uglify');
   
     // Default task(s).
-    grunt.registerTask('default', ['ngtemplates', 'devserver']);
+    grunt.registerTask('default', ['ngtemplates','less', 'devserver']);
     
 };
