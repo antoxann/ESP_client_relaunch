@@ -30,56 +30,78 @@
                         <div class="modal-header">
                             <h4 class="modal-title">Add room</h4>
                         </div>
-                        <div class="modal-body">
-                            <div class="card-body card-padding">
-                                <div class="form-group">
-                                    <label for="inputEmail3" class="col-sm-3 control-label">Room name</label>
-                                    <div class="col-sm-9">
-                                        <div class="fg-line">
-                                            <input type="email" class="form-control input-sm" id="inputEmail3" placeholder="room name" ng-model="room.roomName">
+                        <form name="roomFrom" ng-submit="createRoom(room)" >
+                            <div class="modal-body">
+                                <div class="card-body card-padding">
+                                    
+                                    <div class="form-group">
+                                        <label class="col-sm-4 control-label">Room name</label>
+                                        <div class="col-sm-8">
+                                            <div class="fg-line">
+                                                <input type="text" class="form-control input-sm" placeholder="myRoom" ng-model="room.roomName" required>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="inputPassword3" class="col-sm-3 control-label" >Area</label>
-                                    <div class="col-sm-9">
+                                    <div class="form-group">
+                                        <label class="col-sm-4 control-label">Temperature min</label>
+                                        <div class="col-sm-8">
+                                            <div class="fg-line">
+                                                <input type="text" class="form-control input-sm" placeholder="5.5" ng-model="room.tempMin" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-4 control-label">Temperature max</label>
+                                        <div class="col-sm-8">
+                                            <div class="fg-line">
+                                                <input type="text" class="form-control input-sm" placeholder="10.7" ng-model="room.tempMax" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-4 control-label" >Area</label>
+                                        <div class="col-sm-8">
 
-                                        <div class="fg-line">
-                                            <input type="password" class="form-control input-sm" id="inputPassword3" placeholder="room area" ng-model="room.area">
+                                            <div class="fg-line">
+                                                <input type="number" class="form-control input-sm" placeholder="27" ng-model="room.area" required>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="inputPassword3" class="col-sm-3 control-label">Height</label>
-                                    <div class="col-sm-9">
+                                    <div class="form-group">
+                                        <label class="col-sm-4 control-label">Height</label>
+                                        <div class="col-sm-8">
 
-                                        <div class="fg-line">
-                                            <input type="password" class="form-control input-sm" id="inputPassword3" placeholder="room height" ng-model="room.height">
+                                            <div class="fg-line">
+                                                <input type="number" class="form-control input-sm"  placeholder="10" ng-model="room.height" required>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="inputPassword3" class="col-sm-3 control-label">Windows</label>
-                                    <div class="col-sm-9">
+                                    <div class="form-group">
+                                        <label class="col-sm-4 control-label">Windows</label>
+                                        <div class="col-sm-8">
 
-                                        <div class="fg-line">
-                                            <input type="password" class="form-control input-sm" id="inputPassword3" placeholder="number of windows" ng-model="room.windows">
+                                            <div class="fg-line">
+                                                <input type="number" class="form-control input-sm" placeholder="3" ng-model="room.windows" required>
+                                            </div>
                                         </div>
                                     </div>
+
                                 </div>
                             </div>
-                        </div>
+
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-link" ng-click="createRoom(room)">Save room</button>
+                            <button type="submit" class="btn btn-link" ng-disabled="roomFrom.$invalid">Save room</button>
                             <button type="button" class="btn btn-link" data-dismiss="modal">Close</button>
                         </div>
+                        </form>
                     </div>
                 </div>
             </div>
 
 
             <div class="list-group lg-alt lg-even-black">
-                <div class="list-group-item media">
+
+                <div class="list-group-item media" ng-repeat="room in rooms">
                     <div class="pull-right">
                         <ul class="actions">
                             <li class="dropdown">
@@ -99,42 +121,12 @@
                         </ul>
                     </div>
 
-                    <div class="media-body" ui-sref="app.room">
-                        <div class="lgi-heading">ROOM NAME
+                    <div class="media-body" ui-sref="app.room({room: room})">
+                        <div class="lgi-heading">{{room.roomName}}
                         </div>
                         <ul class="lgi-attrs">
-                            <li>Tmin: 14 C</li>
-                            <li>Tmax : 23 C</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="list-group-item media">
-
-                    <div class="pull-right">
-                        <ul class="actions">
-                            <li class="dropdown">
-                                <a href="" data-toggle="dropdown" aria-expanded="false">
-                                    <i class="zmdi zmdi-more-vert"></i>
-                                </a>
-
-                                <ul class="dropdown-menu dropdown-menu-right">
-                                    <li>
-                                        <a href="">Update</a>
-                                    </li>
-                                    <li>
-                                        <a href="">Delete</a>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <div class="media-body" ui-sref="app.room">
-                        <div class="lgi-heading">ROOM 2 NAME</div>
-                        <ul class="lgi-attrs">
-                            <li>Tmin: 15 C</li>
-                            <li>Tmax : 24 C</li>
+                            <li>Tmin: {{room.tempMin}} C</li>
+                            <li>Tmax : {{room.tempMax}} C</li>
                         </ul>
                     </div>
                 </div>

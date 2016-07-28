@@ -13,7 +13,7 @@
         <link href="assets/bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css" rel="stylesheet">        
         <link href="assets/bower_components/google-material-color/dist/palette.css" rel="stylesheet">
         <link href="assets/bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
-     
+        <link href="assets/bower_components/angular-growl-v2/build/angular-growl.min.css" rel="stylesheet" media="screen">
         
 
         <link href="dist/app.css" rel="stylesheet">
@@ -30,7 +30,8 @@
         
     </head>
     <body data-ma-header="teal" ng-app="myApp">
-        
+
+        <div growl></div>
         <div ui-view></div>
         <!-- Page Loader -->
         <!-- <div class="page-loader palette-Teal bg">
@@ -103,6 +104,9 @@
         <script src="assets/js/flot-charts/curved-line-chart.js"></script>
         <script src="assets/js/flot-charts/line-chart.js"></script>
         <script src='assets/bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js'></script>
+        <script src="assets/bower_components/angular-growl-v2/build/angular-growl.min.js"></script>
+        <script src="assets/bower_components/angular-sanitize/angular-sanitize.js"></script>
+
 
         <!-- Parse-->
         <script src="assets/js/parse.min.js"></script>

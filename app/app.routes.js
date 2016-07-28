@@ -70,6 +70,7 @@ myApp.config(function($stateProvider, $urlRouterProvider, $controllerProvider){
         .state('app.room', {
             url: "room",
             templateUrl: "app.room",
+            params: {room : {},},
             controller: 'RoomController',
             resolve: {
               loadMyCtrl: ['$ocLazyLoad', function($ocLazyLoad) {

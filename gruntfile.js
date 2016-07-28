@@ -3,12 +3,13 @@ module.exports = function(grunt) {
     // Project configuration.
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
-        devserver: {
-            server : {},
-            options : {
-                type : 'http',
-                port : 3000,
-                async : true
+        connect : {
+            server : {
+                options : {
+                    port: 3000,
+                    hostname: '*',
+                    livereload: true
+                }
             }
         },
         ngtemplates: {
@@ -37,7 +38,7 @@ module.exports = function(grunt) {
                 cleancss: true
             },
 
-        }
+        },
         // csssplit: {
         //     your_target: {
         //         src: ['css/app.css'],
@@ -48,30 +49,28 @@ module.exports = function(grunt) {
         //         }
         //     },
         // },
-        // watch: {
-        //     //styles: {
-        //         files: ['less/**/*.less'], // which files to watch
-        //         tasks: ['less', 'csssplit'],
-        //         options: {
-        //             livereload: {
-        //                 host: 'localhost',
-        //                 port: 35729
-        //             }
-        //         } 
-        //     //}
-        // }
+        watch: {
+            options : {
+                livereload: true
+            },
+            html: {
+                files: ['app/**/**/**.html', 'app/**/**/**.html'], // which files to watch
+                tasks: ['ngtemplates']
+            }
+        }
     });
   
     // Load the plugin that provides the "less" task.
-    grunt.loadNpmTasks('grunt-devserver');
+    //grunt.loadNpmTasks('grunt-devserver');
+    grunt.loadNpmTasks('grunt-contrib-connect');
     grunt.loadNpmTasks('grunt-angular-templates');
     grunt.loadNpmTasks('grunt-contrib-htmlmin');
     grunt.loadNpmTasks('grunt-contrib-less');
+    grunt.loadNpmTasks('grunt-contrib-watch');
     // grunt.loadNpmTasks('grunt-csssplit');
-    // grunt.loadNpmTasks('grunt-contrib-watch');
     // grunt.loadNpmTasks('grunt-contrib-uglify');
   
     // Default task(s).
-    grunt.registerTask('default', ['ngtemplates','less', 'devserver']);
+    grunt.registerTask('default', ['ngtemplates','less', 'connect','watch']);
     
 };

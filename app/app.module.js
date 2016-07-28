@@ -1,1 +1,1 @@
-var myApp = angular.module('myApp', ['ui.router', 'oc.lazyLoad']);
+var myApp = angular.module('myApp', ['ui.router', 'oc.lazyLoad', 'angular-growl', 'ngSanitize']);
