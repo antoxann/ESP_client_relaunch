@@ -39,6 +39,7 @@ myApp.config(function($stateProvider, $urlRouterProvider, $controllerProvider){
         .state('app.device', {
             url: "device",
             templateUrl: "app.device",
+            params: {device : {}},
             controller: 'DeviceController',
             resolve: {
               loadMyCtrl: ['$ocLazyLoad', function($ocLazyLoad) {

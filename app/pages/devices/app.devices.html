@@ -1,143 +1,91 @@
-<section id="content">
+ <section id="content">
     <div class="container">
         <div class="c-header">
             <h2>Devices</h2>
         </div>
 
-        <div class="card">
-            <div class="action-header palette-Teal-400 bg clearfix">
-                <div class="ah-label hidden-xs palette-White text">List of your devices:</div>
+        <div class="row">
+            <div class="col-lg-9 col-md-9">
+                <div class="col-lg-4 col-md-6" ng-repeat="device in devices">
+                    <div class="card c-dark palette-Green-A700 bg" ui-sref="app.device({device: device})">
+                        <div class="card-header">
+                            <h2> {{device.deviceName}} <small>{{device.status}} Connected|notConnected</small></h2>
+                        </div>
+                        <div class="card-body card-padding">
+                            <h4 class="m-t-0 m-b-15 c-white">
+                                <i class="zmdi zmdi-trending-down m-r-5"></i>
+                                 Humidity {{device.tempMin}}%
+                            </h4>
+                            <h4 class="m-t-0 m-b-15 c-white">
+                                <i class="zmdi zmdi-trending-up m-r-5"></i>
+                                Default t: {{device.tempDefault}} C
+                            </h4>
+
+                            <div class="sparkline-1 text-center"></div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <ul class="ah-actions actions a-alt">
-                <li>
-                    <a href="">
-                        <i class="zmdi zmdi-plus" data-toggle="modal" href="#addDeviceModal"></i>
-                    </a>
-                </li>
-            </ul>
+            <div class="col-md-3 col-lg-3">
+                 <div class="card">
+                    <div class="card-header">
+                        <h2 class="text-width">Don`t have device yet? <small>Create your first device right now!</small></h2>
+                    </div>
 
-            <!-- Add device modal -->
-            <div class="modal fade" id="addDeviceModal" tabindex="-1" role="dialog" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h4 class="modal-title">Add device</h4>
-                        </div>
-                        <div class="modal-body">
-                            <div class="card-body card-padding">
-                                <div class="form-group">
-                                    <label for="inputEmail3" class="col-sm-3 control-label">Device name</label>
-                                    <div class="col-sm-9">
-                                        <div class="fg-line">
-                                            <input type="email" class="form-control input-sm" id="inputEmail3" placeholder="Device name">
-                                        </div>
+                    <div class="card-body">
+                        <button class="btn palette-Light-Green bg btn-float waves-effect waves-circle waves-float" data-toggle="modal" href="#addDeviceModal"><i class="zmdi zmdi-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Add device modal -->
+        <div class="modal fade" id="addDeviceModal" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Add device</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="card-body card-padding">
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Device name</label>
+                                <div class="col-sm-9">
+                                    <div class="fg-line">
+                                        <input type="text" class="form-control input-sm" placeholder="Device name" ng-model="device.deviceName">
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <label for="inputPassword3" class="col-sm-3 control-label">MacAddress</label>
-                                    <div class="col-sm-9">
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">MacAddress</label>
+                                <div class="col-sm-9">
 
-                                        <div class="fg-line">
-                                            <input type="password" class="form-control input-sm" id="inputPassword3" placeholder="MacAddress">
-                                        </div>
+                                    <div class="fg-line">
+                                        <input type="text" class="form-control input-sm" placeholder="MacAddress" ng-model="device.macAddress">
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <label for="inputPassword3" class="col-sm-3 control-label">Room</label>
-                                    <div class="col-sm-9">
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Room</label>
+                                <div class="col-sm-9">
 
-                                        <div class="fg-line">
-                                            <select class="selectpicker">
-                                                <option>Mustard</option>
-                                                <option>Ketchup</option>
-                                                <option>Relish</option>
-                                            </select>
-                                        </div>
+                                    <div class="fg-line">
+                                        <select class="selectpicker" ng-model="device.room" ng-options="r.roomName for r in rooms"></select>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-link">Save device</button>
-                            <button type="button" class="btn btn-link" data-dismiss="modal">Close</button>
-                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-link" ng-click="createDevice(device)">Save device</button>
+                        <button type="button" class="btn btn-link" data-dismiss="modal">Close</button>
                     </div>
                 </div>
             </div>
-
-            <div class="list-group lg-alt lg-even-black">
-                <div class="list-group-item media">
-                    <div class="pull-right">
-                        <ul class="actions">
-                            <li class="dropdown">
-                                <a href="" data-toggle="dropdown" aria-expanded="false">
-                                    <i class="zmdi zmdi-more-vert"></i>
-                                </a>
-
-                                <ul class="dropdown-menu dropdown-menu-right">
-                                    <li>
-                                        <a href="">Update</a>
-                                    </li>
-                                    <li>
-                                        <a href="">Delete</a>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <div class="pull-left">
-                        <div class="avatar-char palette-Green-400 bg">
-                            <i class="zmdi zmdi-check zmdi-hc-fw"></i>
-                        </div>
-                    </div>
-
-                    <div class="media-body" ui-sref="app.device">
-                        <div class="lgi-heading">DEVICE NAME
-                        </div>
-                        <ul class="lgi-attrs">
-                            <li>Humidity: 40%</li>
-                            <li>Last temperature: 23 C</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="list-group-item media">
-
-                    <div class="pull-left">
-                        <div class="avatar-char palette-Red-400 bg">
-                            <i class="zmdi zmdi-close zmdi-hc-fw"></i>
-                        </div>
-                    </div>
-
-                    <div class="pull-right">
-                        <ul class="actions">
-                            <li class="dropdown">
-                                <a href="" data-toggle="dropdown" aria-expanded="false">
-                                    <i class="zmdi zmdi-more-vert"></i>
-                                </a>
-
-                                <ul class="dropdown-menu dropdown-menu-right">
-                                    <li>
-                                        <a href="">Update</a>
-                                    </li>
-                                    <li>
-                                        <a href="">Delete</a>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <div class="media-body" ui-sref="app.device">
-                        <div class="lgi-heading">DEVICE 2 NAME</div>
-                        <ul class="lgi-attrs">
-                            <li>Humidity: 50%</li>
-                            <li>Last temperature: 27 C</li>
-                        </ul>
-                    </div>
-                </div>
         </div>
+
+
+
     </div>
 </section>

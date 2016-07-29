@@ -5,8 +5,12 @@ myApp.directive('device', function() {
     bindToController: {
     	device: '=obj'
     },
-    controller: function ($scope) {
+    controller: function ($scope, JqueryService, growl) {
     	console.log($scope.device);
+
+        $scope.editDevice = function (device) {
+            console.log(device);
+        }
     }
   };
 });
