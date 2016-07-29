@@ -4,132 +4,115 @@
             <h2>Rooms</h2>
         </div>
 
-        <div class="card">
-            <div class="action-header palette-Teal-400 bg clearfix">
-                <div class="ah-label hidden-xs palette-White text">List of availble rooms:</div>
-            <!--     <div class="pull-right">
-                    <button class="btn pull-right palette-Light-Green bg btn-float waves-effect waves-circle waves-float">
-                        <i class="zmdi zmdi-plus"></i>
-                    </button>
-                </div> -->
-                
+        <div class="row">
+            <div class="col-lg-9 col-md-9">
+                <div class="col-lg-4 col-md-6" ng-repeat="room in rooms">
+                    <div class="card c-dark palette-Light-Blue bg" ui-sref="app.room({room: room})">
+                        <div class="card-header">
+                            <h2> {{room.roomName}} <small>Consectetur Ultricies Porta Fringilla</small></h2>
+                        </div>
+                        <div class="card-body card-padding">
+                            <h4 class="m-t-0 m-b-15 c-white">
+                                <i class="zmdi zmdi-trending-down m-r-5"></i>
+                                 Tmin {{room.tempMin}}
+                            </h4>
+                            <h4 class="m-t-0 m-b-15 c-white">
+                                <i class="zmdi zmdi-trending-up m-r-5"></i>
+                                Tmax {{room.tempMax}}
+                            </h4>
+
+                            <div class="sparkline-1 text-center"></div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <ul class="ah-actions actions a-alt">
-                <li>
-                    <a href="">
-                        <i class="zmdi zmdi-plus" data-toggle="modal" href="#addRoomModal"></i>
-                    </a>
-                </li>
-            </ul>
+            <div class="col-md-3 col-lg-3">
+                 <div class="card">
+                    <div class="card-header">
+                        <h2 class="text-width">Don`t have rooms yet? <small>Create your first room right now!</small></h2>
+                    </div>
 
-            <!-- Add room modal -->
-            <div class="modal fade" id="addRoomModal" tabindex="-1" role="dialog" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h4 class="modal-title">Add room</h4>
-                        </div>
-                        <form name="roomFrom" ng-submit="createRoom(room)" >
-                            <div class="modal-body">
-                                <div class="card-body card-padding">
-                                    
-                                    <div class="form-group">
-                                        <label class="col-sm-4 control-label">Room name</label>
-                                        <div class="col-sm-8">
-                                            <div class="fg-line">
-                                                <input type="text" class="form-control input-sm" placeholder="myRoom" ng-model="room.roomName" required>
-                                            </div>
+                    <div class="card-body">
+                        <button class="btn palette-Light-Green bg btn-float waves-effect waves-circle waves-float" data-toggle="modal" href="#addRoomModal"><i class="zmdi zmdi-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Add room modal -->
+        <div class="modal fade" id="addRoomModal" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Add room</h4>
+                    </div>
+                    <form name="roomFrom" ng-submit="createRoom(room)" >
+                        <div class="modal-body">
+                            <div class="card-body card-padding">
+                                
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label">Room name</label>
+                                    <div class="col-sm-8">
+                                        <div class="fg-line">
+                                            <input type="text" class="form-control input-sm" placeholder="myRoom" ng-model="room.roomName" required>
                                         </div>
                                     </div>
-                                    <div class="form-group">
-                                        <label class="col-sm-4 control-label">Temperature min</label>
-                                        <div class="col-sm-8">
-                                            <div class="fg-line">
-                                                <input type="text" class="form-control input-sm" placeholder="5.5" ng-model="room.tempMin" required>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-sm-4 control-label">Temperature max</label>
-                                        <div class="col-sm-8">
-                                            <div class="fg-line">
-                                                <input type="text" class="form-control input-sm" placeholder="10.7" ng-model="room.tempMax" required>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-sm-4 control-label" >Area</label>
-                                        <div class="col-sm-8">
-
-                                            <div class="fg-line">
-                                                <input type="number" class="form-control input-sm" placeholder="27" ng-model="room.area" required>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-sm-4 control-label">Height</label>
-                                        <div class="col-sm-8">
-
-                                            <div class="fg-line">
-                                                <input type="number" class="form-control input-sm"  placeholder="10" ng-model="room.height" required>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-sm-4 control-label">Windows</label>
-                                        <div class="col-sm-8">
-
-                                            <div class="fg-line">
-                                                <input type="number" class="form-control input-sm" placeholder="3" ng-model="room.windows" required>
-                                            </div>
-                                        </div>
-                                    </div>
-
                                 </div>
-                            </div>
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label">Temperature min</label>
+                                    <div class="col-sm-8">
+                                        <div class="fg-line">
+                                            <input type="text" class="form-control input-sm" placeholder="5.5" ng-model="room.tempMin" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label">Temperature max</label>
+                                    <div class="col-sm-8">
+                                        <div class="fg-line">
+                                            <input type="text" class="form-control input-sm" placeholder="10.7" ng-model="room.tempMax" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label" >Area</label>
+                                    <div class="col-sm-8">
 
-                        <div class="modal-footer">
-                            <button type="submit" class="btn btn-link" ng-disabled="roomFrom.$invalid">Save room</button>
-                            <button type="button" class="btn btn-link" data-dismiss="modal">Close</button>
+                                        <div class="fg-line">
+                                            <input type="number" class="form-control input-sm" placeholder="27" ng-model="room.area" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label">Height</label>
+                                    <div class="col-sm-8">
+
+                                        <div class="fg-line">
+                                            <input type="number" class="form-control input-sm"  placeholder="10" ng-model="room.height" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label">Windows</label>
+                                    <div class="col-sm-8">
+
+                                        <div class="fg-line">
+                                            <input type="number" class="form-control input-sm" placeholder="3" ng-model="room.windows" required>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
                         </div>
-                        </form>
+
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-link" ng-disabled="roomFrom.$invalid">Save room</button>
+                        <button type="button" class="btn btn-link" data-dismiss="modal">Close</button>
                     </div>
+                    </form>
                 </div>
             </div>
-
-
-            <div class="list-group lg-alt lg-even-black">
-
-                <div class="list-group-item media" ng-repeat="room in rooms">
-                    <div class="pull-right">
-                        <ul class="actions">
-                            <li class="dropdown">
-                                <a href="" data-toggle="dropdown" aria-expanded="false">
-                                    <i class="zmdi zmdi-more-vert"></i>
-                                </a>
-
-                                <ul class="dropdown-menu dropdown-menu-right">
-                                    <li>
-                                        <a href="">Update</a>
-                                    </li>
-                                    <li>
-                                        <a href="">Delete</a>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <div class="media-body" ui-sref="app.room({room: room})">
-                        <div class="lgi-heading">{{room.roomName}}
-                        </div>
-                        <ul class="lgi-attrs">
-                            <li>Tmin: {{room.tempMin}} C</li>
-                            <li>Tmax : {{room.tempMax}} C</li>
-                        </ul>
-                    </div>
-                </div>
         </div>
     </div>
 </section>
