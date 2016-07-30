@@ -1,6 +1,5 @@
 myApp.config(function($stateProvider, $urlRouterProvider, $controllerProvider){
       
-    
     // For any unmatched url, send to /route1
     $urlRouterProvider.otherwise("index")
     
