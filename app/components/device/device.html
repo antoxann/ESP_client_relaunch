@@ -68,19 +68,10 @@
                                 </dd>
                             </dl>
                             <dl class="dl-horizontal">
-                                <dt class="p-t-10">TempMin</dt>
+                                <dt class="p-t-10">Rooms</dt>
                                 <dd>
                                     <div class="fg-line">
-                                        <input type="text" class="form-control" ng-model="device.tempMin">
-                                    </div>
-
-                                </dd>
-                            </dl>
-                            <dl class="dl-horizontal">
-                                <dt class="p-t-10">Temp Default</dt>
-                                <dd>
-                                    <div class="fg-line">
-                                        <input type="text" class="form-control" ng-model="device.tempDefault">
+                                        <select class="selectpicker" ng-model="device.room" ng-options="r.roomName for r in rooms"></select>
                                     </div>
 
                                 </dd>

@@ -5,11 +5,24 @@ myApp.directive('device', function() {
     bindToController: {
     	device: '=obj'
     },
-    controller: function ($scope, JqueryService, growl) {
+    controller: function ($scope, JqueryService, growl, DeviceService, RoomService) {
     	console.log($scope.device);
+
+        RoomService.getRooms().then(function (rooms) {
+            $scope.rooms = rooms;
+        }, function (error) {
+            console.log(error);
+            growl.error(error.message, {title: 'ALERT WE GOT AN ERROR'});
+        })
 
         $scope.editDevice = function (device) {
             console.log(device);
+            DeviceService.editDevice(device).then(function (model) {
+                growl.success('Your device was edited successfully', {title: 'Device edited!'});
+            }, function (error) {
+                console.log(error);
+                growl.error(error.message, {title: 'WE GOT AN ERROR'});
+            });
         }
     }
   };

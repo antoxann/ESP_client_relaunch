@@ -18,7 +18,7 @@ myApp.factory('DeviceService', function(ParseService, $q) {
                     device.set("roomId",{"__type":"Pointer","className":"Room","objectId":id});
                     device.setACL(new Parse.ACL(Parse.User.current()));
                     device.save({
-                        success: function(model){
+                        success: function(model) {
                             deferred.resolve(model);
                         },
                         error: function(myObject, error) {
@@ -38,6 +38,7 @@ myApp.factory('DeviceService', function(ParseService, $q) {
         var deferred = $q.defer();
         var devices = [];
         var query = new Parse.Query(Device);
+        query.equalTo("owner", Parse.User.current());
         query.find({
             success: function (results) {
                 results.forEach(function (device, index) {
@@ -60,9 +61,30 @@ myApp.factory('DeviceService', function(ParseService, $q) {
         return deferred.promise; 
     }
 
+    function editDevice (deviceModel) {
+        var deferred = $q.defer();
+
+        var device = new Device();
+        device.id = deviceModel.id;
+        device.set("deviceName", deviceModel.deviceName);
+        device.set("roomId",{"__type":"Pointer","className":"Room","objectId":deviceModel.room.id});
+
+        device.save(null, {
+            success: function(deviceObj){
+                deferred.resolve(deviceObj);
+            },
+            error: function(deviceObj, error) {
+                deferred.reject(error);
+            }
+        });
+
+        return deferred.promise;
+    }
+
 
     return {
         createDevice: createDevice,
-        getDevices: getDevices
+        getDevices: getDevices,
+        editDevice: editDevice
     }
 });
