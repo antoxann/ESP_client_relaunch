@@ -14,6 +14,7 @@ angular.module('myApp').controller("ProfileController", function ($scope, Jquery
 		userModel.set("city", user.city);
 		userModel.set("utcTime", user.utcTime);
 		userModel.set("email", user.email);
+		userModel.set("username", user.username);
 
 		userModel.save({
 			success: function (user) {

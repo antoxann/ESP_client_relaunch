@@ -1,4 +1,4 @@
-myApp.config(function($stateProvider, $urlRouterProvider, $controllerProvider){
+myApp.config(function($stateProvider, $urlRouterProvider, $controllerProvider) {
       
     // For any unmatched url, send to /route1
     $urlRouterProvider.otherwise("index")
@@ -9,6 +9,7 @@ myApp.config(function($stateProvider, $urlRouterProvider, $controllerProvider){
           templateUrl: "layout",
           controller: 'LayoutController',
           resolve: {
+            authenticate: authenticate,
             loadMyCtrl: ['$ocLazyLoad', function($ocLazyLoad) {
                   return $ocLazyLoad.load('app/pages/layout/LayoutController.js');
             }]
@@ -19,6 +20,7 @@ myApp.config(function($stateProvider, $urlRouterProvider, $controllerProvider){
             templateUrl: "app.main",
             controller: 'MainController',
             resolve: {
+              authenticate: authenticate,
               loadMyCtrl: ['$ocLazyLoad', function($ocLazyLoad) {
                     return $ocLazyLoad.load('app/pages/main/MainController.js');
               }]
@@ -29,6 +31,7 @@ myApp.config(function($stateProvider, $urlRouterProvider, $controllerProvider){
             templateUrl: "app.devices",
             controller: 'DevicesController',
             resolve: {
+              authenticate: authenticate,
               loadMyCtrl: ['$ocLazyLoad', function($ocLazyLoad) {
                     return $ocLazyLoad.load(['app/pages/devices/DevicesController.js',
                       'app/components/device/deviceDirective.js']);
@@ -41,6 +44,7 @@ myApp.config(function($stateProvider, $urlRouterProvider, $controllerProvider){
             params: {device : {}},
             controller: 'DeviceController',
             resolve: {
+              authenticate: authenticate,
               loadMyCtrl: ['$ocLazyLoad', function($ocLazyLoad) {
                     return $ocLazyLoad.load('app/pages/device/DeviceController.js');
               }]
@@ -51,6 +55,7 @@ myApp.config(function($stateProvider, $urlRouterProvider, $controllerProvider){
             templateUrl: "app.charts",
             controller: 'ChartsController',
             resolve: {
+              authenticate: authenticate,
               loadMyCtrl: ['$ocLazyLoad', function($ocLazyLoad) {
                     return $ocLazyLoad.load('app/pages/charts/ChartsController.js');
               }]
@@ -61,6 +66,7 @@ myApp.config(function($stateProvider, $urlRouterProvider, $controllerProvider){
             templateUrl: "app.rooms",
             controller: 'RoomsController',
             resolve: {
+              authenticate: authenticate,
               loadMyCtrl: ['$ocLazyLoad', function($ocLazyLoad) {
                     return $ocLazyLoad.load(['app/pages/rooms/RoomsController.js',
                       'app/components/room/roomDirective.js']);
@@ -73,6 +79,7 @@ myApp.config(function($stateProvider, $urlRouterProvider, $controllerProvider){
             params: {room : {},},
             controller: 'RoomController',
             resolve: {
+              authenticate: authenticate,
               loadMyCtrl: ['$ocLazyLoad', function($ocLazyLoad) {
                     return $ocLazyLoad.load('app/pages/room/RoomController.js');
               }]
@@ -83,6 +90,7 @@ myApp.config(function($stateProvider, $urlRouterProvider, $controllerProvider){
             templateUrl: "app.simulation",
             controller: 'SimulationController',
             resolve: {
+              authenticate: authenticate,
               loadMyCtrl: ['$ocLazyLoad', function($ocLazyLoad) {
                     return $ocLazyLoad.load('app/pages/simulation/SimulationController.js');
               }]
@@ -93,6 +101,7 @@ myApp.config(function($stateProvider, $urlRouterProvider, $controllerProvider){
             templateUrl: "app.profile",
             controller: 'ProfileController',
             resolve: {
+              authenticate: authenticate,
               loadMyCtrl: ['$ocLazyLoad', function($ocLazyLoad) {
                     return $ocLazyLoad.load(['app/pages/profile/ProfileController.js']);
               }]
@@ -119,11 +128,19 @@ myApp.config(function($stateProvider, $urlRouterProvider, $controllerProvider){
             }]
           }
       })
-      //   .state('route2.list', {
-      //       url: "/list",
-      //       templateUrl: "route2.list.html",
-      //       controller: function($scope){
-      //         $scope.things = ["A", "Set", "Of", "Things"];
-      //       }
-      //   })
+
+      function authenticate ($q, AuthService) {
+        if (AuthService.isLoggedIn()) {
+          return $q.when()
+        } else {
+          $timeout(function() {
+          // This code runs after the authentication promise has been rejected.
+          // Go to the log-in page
+            $state.go('login')
+          })
+
+          // Reject the authentication promise to prevent the state from loading
+          return $q.reject()
+        }
+      }
   })
