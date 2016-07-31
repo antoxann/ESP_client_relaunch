@@ -1,6 +1,5 @@
 myApp.config(function($stateProvider, $urlRouterProvider, $controllerProvider) {
       
-    // For any unmatched url, send to /route1
     $urlRouterProvider.otherwise("index")
     
     $stateProvider
@@ -134,12 +133,8 @@ myApp.config(function($stateProvider, $urlRouterProvider, $controllerProvider) {
           return $q.when()
         } else {
           $timeout(function() {
-          // This code runs after the authentication promise has been rejected.
-          // Go to the log-in page
             $state.go('login')
           })
-
-          // Reject the authentication promise to prevent the state from loading
           return $q.reject()
         }
       }
