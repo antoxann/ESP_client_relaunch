@@ -1,4 +1,4 @@
-myApp.factory('AuthService', function(ParseService, $state, growl) {
+angular.module('myApp').factory('AuthService', function(ParseService, $state, growl) {
   	var userObj = {};
 
   	function isLoggedIn () {

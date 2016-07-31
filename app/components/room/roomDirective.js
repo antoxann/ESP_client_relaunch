@@ -1,12 +1,14 @@
-myApp.directive('room', function() {
+angular.module('myApp').directive('room', function() {
   return {
     restrict: 'E',
     templateUrl: 'room',
     bindToController: {
     	room: '=obj'
     },
-    controller: function ($scope, JqueryService, growl, RoomService) {
+    controller: function ($scope, JqueryProfileService, growl, RoomService, AuthService) {
     	console.log($scope.room);
+
+        $scope.user = AuthService.getCurrentUser();
 
         $scope.editRoom = function (roomModel) {
             RoomService.editRoom(roomModel).then(function (model) {

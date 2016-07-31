@@ -1,12 +1,14 @@
-myApp.directive('device', function() {
+angular.module('myApp').directive('device', function() {
   return {
     restrict: 'E',
     templateUrl: 'device',
     bindToController: {
     	device: '=obj'
     },
-    controller: function ($scope, JqueryService, growl, DeviceService, RoomService) {
+    controller: function ($scope, JqueryProfileService, growl, DeviceService, RoomService, AuthService) {
     	console.log($scope.device);
+
+        $scope.user = AuthService.getCurrentUser();
 
         RoomService.getRooms().then(function (rooms) {
             $scope.rooms = rooms;

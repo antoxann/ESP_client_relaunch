@@ -1,4 +1,4 @@
-angular.module('myApp').controller("ProfileController", function ($scope, JqueryService, AuthService, growl, ParseService) {
+angular.module('myApp').controller("ProfileController", function ($scope, JqueryProfileService, AuthService, growl, ParseService) {
 	console.log("ProfileController");
 	var User = Parse.Object.extend("User");
 
@@ -6,8 +6,6 @@ angular.module('myApp').controller("ProfileController", function ($scope, Jquery
 	console.log($scope.user);
 
 	$scope.editProfile = function (user) {
-		console.log(user);
-
 		var userModel = new User();
 		userModel.id = user.id;
 		userModel.set("name", user.name);

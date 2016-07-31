@@ -1,4 +1,4 @@
-angular.module('myApp').controller("SignupController", function ($scope, AuthService, JqueryService) {
+angular.module('myApp').controller("SignupController", function ($scope, AuthService, JqueryAuthService) {
 	console.log("SignupController");
     console.log(AuthService.isLoggedIn());
 
