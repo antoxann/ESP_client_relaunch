@@ -6,15 +6,16 @@ angular.module('myApp').controller("ProfileController", function ($scope, Jquery
 	console.log($scope.user);
 
 	$scope.editProfile = function (user) {
-		var userModel = new User();
-		userModel.id = user.id;
-		userModel.set("name", user.name);
-		userModel.set("lastName", user.lastName);
-		userModel.set("location", user.location);
-		userModel.set("city", user.city);
-		userModel.set("utcTime", user.utcTime);
-		userModel.set("email", user.email);
-		userModel.set("username", user.username);
+		var userModel = new User({
+			id: user.objectId,
+			name: user.name,
+			lastName: user.lastName,
+			location: user.location,
+			city: user.city,
+			utcTime: user.utcTime,
+			email: user.email,
+			username: user.username
+		});
 
 		userModel.save({
 			success: function (user) {

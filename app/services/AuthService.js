@@ -10,36 +10,22 @@ angular.module('myApp').factory('AuthService', function(ParseService, $state, gr
   	};
 
   	if (isLoggedIn()) {
-  		var userModel = Parse.User.current()
-  		userObj.id = userModel.id;
-	    userObj.name = userModel.get('name');
-	    userObj.lastName = userModel.get('lastName');
-	    userObj.location = userModel.get('location');
-	    userObj.city = userModel.get('city');
-	    userObj.utcTime = userModel.get('utcTime');
-	    userObj.email = userModel.get('email');
-	    userObj.username = userModel.get('username');
+	    userObj = Parse.User.current().toJSON();
   	}
 
   	function signup (username, email, password) {
-  		var user = new Parse.User();
-		user.set("username", username);
-		user.set("password", password);
-		user.set("email", email);
-		user.set("utcTime", new Date());
+  		var user = new Parse.User({
+  			username: username,
+  			password: password,
+  			email: email,
+  			utcTime: new Date()
+  		});
 
 		user.signUp(null, {
 		  success: function(userModel) {
-		    userObj.id = userModel.id;
-		    userObj.name = userModel.get('name');
-		    userObj.lastName = userModel.get('lastName');
-		    userObj.location = userModel.get('location');
-		    userObj.city = userModel.get('city');
-		    userObj.utcTime = userModel.get('utcTime');
-		    userObj.email = userModel.get('email');
-		    userObj.username = userModel.get('username');
+		    userObj = Parse.User.current().toJSON();
 		    $state.go('app.main');
-		    console.log(user);
+		    console.log(userObj);
 		  },
 		  error: function(user, error) {
 		  	console.log(error);
@@ -51,13 +37,7 @@ angular.module('myApp').factory('AuthService', function(ParseService, $state, gr
   	function signin (username, password) {
   		Parse.User.logIn(username, password, {
 	        success: function (userModel) {
-	            userObj.name = userModel.get('name');
-			    userObj.lastName = userModel.get('lastName');
-			    userObj.location = userModel.get('location');
-			    userObj.city = userModel.get('city');
-			    userObj.utcTime = userModel.get('utcTime');
-			    userObj.email = userModel.get('email');
-			    userObj.username = userModel.get('username');
+	            userObj = Parse.User.current().toJSON();
 	           	$state.go('app.main');
 		    	console.log(userObj);
 	        },
