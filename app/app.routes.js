@@ -1,15 +1,12 @@
 myApp.config(function($stateProvider, $urlRouterProvider, $controllerProvider) {
       
-    $urlRouterProvider.otherwise("index")
+    $urlRouterProvider.otherwise("login")
     
     $stateProvider
       .state('app', {
           url: "/",
           templateUrl: "layout",
-          controller: 'LayoutController',
-          resolve: {
-            authenticate: authenticate
-          }
+          controller: 'LayoutController'
       })
         .state('app.main', {
             url: "index",
@@ -81,7 +78,10 @@ myApp.config(function($stateProvider, $urlRouterProvider, $controllerProvider) {
       .state('login', {
           url: "/login",
           templateUrl: "login",
-          controller: "LoginController"
+          controller: "LoginController",
+          resolve: {
+            loggedin: loggedin
+          }
       })
       .state('signup', {
           url: "/signup",
@@ -89,14 +89,25 @@ myApp.config(function($stateProvider, $urlRouterProvider, $controllerProvider) {
           controller: "SignupController"
       })
 
-      function authenticate ($q, AuthService) {
+      function authenticate ($q, AuthService, $state, $timeout) {
         if (AuthService.isLoggedIn()) {
-          return $q.when()
+          return $q.when();
         } else {
           $timeout(function() {
             $state.go('login')
           })
           return $q.reject()
+        }
+      }
+
+      function loggedin ($q, AuthService, $state, $timeout) {
+        if (AuthService.isLoggedIn()) {
+            $timeout(function() {
+              $state.go('app.main')
+            })
+          return $q.reject()
+        } else {
+            return $q.when();
         }
       }
   })
