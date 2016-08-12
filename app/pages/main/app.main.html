@@ -58,7 +58,7 @@
             <div class="column size-1of2">
                 <div class="card limited">
                     <div class="card-header">
-                        <h2>Notifications <small>Your last notifications</small></h2>
+                        <h2>Measurement <small>Your last measurement</small></h2>
 
                         <ul class="actions">
                             <li>
@@ -93,26 +93,22 @@
                     
                     <div class="card-body">
                         <div class="list-group lg-alt c-overflow">
-                            <a class="list-group-item media">
+                            <a class="list-group-item media" ng-hide="lastMeasure">
+                                <div class="media-body">
+                                    <div class="lgi-heading">You dont have measures yet</div>
+                                </div>
+                            </a>
+
+                            <a class="list-group-item media" ng-repeat="measure in lastMeasure">
                                 <div class="pull-right">
-                                    <small class="lgi-text">1 hour ago</small>
+                                    <small class="lgi-text">{{measure.time}}</small>
                                 </div>
                                 
                                 <div class="media-body">
-                                    <div class="lgi-heading">First notificatin</div>
+                                    <div class="lgi-heading">{{measure.name}}</div>
                                 </div>
                             </a>
-
-                            <a class="list-group-item media">
-                                <div class="pull-right">
-                                    <small class="lgi-text">1 hour ago</small>
-                                </div> 
-                                <div class="media-body">
-                                    <div class="lgi-heading">Second notification</div>
-                                </div>
-                            </a>
-
-                            <a href="" class="list-group-item view-more">
+                            <a  ng-show="lastMeasure" href="" class="list-group-item view-more">
                                 <i class="zmdi zmdi-long-arrow-right"></i> View more
                             </a>
                         </div>

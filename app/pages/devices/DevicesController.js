@@ -16,6 +16,7 @@ angular.module('myApp').controller("DevicesController", function ($scope, RoomSe
 			console.log(deviceModel);
 			$('#addDeviceModal').modal('hide');
 			growl.success('Your device was added successfully', {title: 'Device added!'});
+			getDevices();
 		}, function (error) {
 			console.log(error);
 			if (error.code === 404) {
@@ -26,10 +27,14 @@ angular.module('myApp').controller("DevicesController", function ($scope, RoomSe
 		});
 	}
 
-	DeviceService.getDevices().then(function (devices) {
-		console.log(devices);
-		$scope.devices = devices;
-	}, function (error) {
-		console.log(error);
-	})
+	function getDevices () {
+		DeviceService.getDevices().then(function (devices) {
+			console.log(devices);
+			$scope.devices = devices;
+		}, function (error) {
+			console.log(error);
+		})
+	};
+	getDevices();
+	
 });

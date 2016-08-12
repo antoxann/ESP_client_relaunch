@@ -39,7 +39,7 @@
     "typeahead.js": "~0.11.1",
     "Waves": "waves#~0.7.4",
     "jquery": "~2.1.4",
-    "moment": "~2.10.6",
+    "moment": "^2.14.1",
     "chosen": "~1.4.2",
     "google-material-color": "~1.2.6",
     "salvattore": "~1.0.9",

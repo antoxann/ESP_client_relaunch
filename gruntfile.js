@@ -62,6 +62,10 @@ module.exports = function(grunt) {
             html: {
                 files: ['app/**/**/**.html', 'app/**/**/**.html'], // which files to watch
                 tasks: ['ngtemplates']
+            },
+            js: {
+                files: ['app/**/**/**.js', 'app/**/**.js'], // which files to watch
+                tasks: ['concat']
             }
         }
     });
