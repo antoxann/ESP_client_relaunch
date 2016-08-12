@@ -8,10 +8,7 @@ myApp.config(function($stateProvider, $urlRouterProvider, $controllerProvider) {
           templateUrl: "layout",
           controller: 'LayoutController',
           resolve: {
-            authenticate: authenticate,
-            loadMyCtrl: ['$ocLazyLoad', function($ocLazyLoad) {
-                  return $ocLazyLoad.load('app/pages/layout/LayoutController.js');
-            }]
+            authenticate: authenticate
           }
       })
         .state('app.main', {
@@ -19,10 +16,7 @@ myApp.config(function($stateProvider, $urlRouterProvider, $controllerProvider) {
             templateUrl: "app.main",
             controller: 'MainController',
             resolve: {
-              authenticate: authenticate,
-              loadMyCtrl: ['$ocLazyLoad', function($ocLazyLoad) {
-                    return $ocLazyLoad.load('app/pages/main/MainController.js');
-              }]
+              authenticate: authenticate
             }
         })
         .state('app.devices', {
@@ -30,11 +24,7 @@ myApp.config(function($stateProvider, $urlRouterProvider, $controllerProvider) {
             templateUrl: "app.devices",
             controller: 'DevicesController',
             resolve: {
-              authenticate: authenticate,
-              loadMyCtrl: ['$ocLazyLoad', function($ocLazyLoad) {
-                    return $ocLazyLoad.load(['app/pages/devices/DevicesController.js',
-                      'app/components/device/deviceDirective.js']);
-              }]
+              authenticate: authenticate
             }
         })
         .state('app.device', {
@@ -43,10 +33,7 @@ myApp.config(function($stateProvider, $urlRouterProvider, $controllerProvider) {
             params: {device : {}},
             controller: 'DeviceController',
             resolve: {
-              authenticate: authenticate,
-              loadMyCtrl: ['$ocLazyLoad', function($ocLazyLoad) {
-                    return $ocLazyLoad.load('app/pages/device/DeviceController.js');
-              }]
+              authenticate: authenticate
             }
         })
         .state('app.charts', {
@@ -54,10 +41,7 @@ myApp.config(function($stateProvider, $urlRouterProvider, $controllerProvider) {
             templateUrl: "app.charts",
             controller: 'ChartsController',
             resolve: {
-              authenticate: authenticate,
-              loadMyCtrl: ['$ocLazyLoad', function($ocLazyLoad) {
-                    return $ocLazyLoad.load('app/pages/charts/ChartsController.js');
-              }]
+              authenticate: authenticate
             }
         })
         .state('app.rooms', {
@@ -65,11 +49,7 @@ myApp.config(function($stateProvider, $urlRouterProvider, $controllerProvider) {
             templateUrl: "app.rooms",
             controller: 'RoomsController',
             resolve: {
-              authenticate: authenticate,
-              loadMyCtrl: ['$ocLazyLoad', function($ocLazyLoad) {
-                    return $ocLazyLoad.load(['app/pages/rooms/RoomsController.js',
-                      'app/components/room/roomDirective.js']);
-              }]
+              authenticate: authenticate
             }
         })
         .state('app.room', {
@@ -78,10 +58,7 @@ myApp.config(function($stateProvider, $urlRouterProvider, $controllerProvider) {
             params: {room : {},},
             controller: 'RoomController',
             resolve: {
-              authenticate: authenticate,
-              loadMyCtrl: ['$ocLazyLoad', function($ocLazyLoad) {
-                    return $ocLazyLoad.load('app/pages/room/RoomController.js');
-              }]
+              authenticate: authenticate
             }
         })
         .state('app.simulation', {
@@ -89,10 +66,7 @@ myApp.config(function($stateProvider, $urlRouterProvider, $controllerProvider) {
             templateUrl: "app.simulation",
             controller: 'SimulationController',
             resolve: {
-              authenticate: authenticate,
-              loadMyCtrl: ['$ocLazyLoad', function($ocLazyLoad) {
-                    return $ocLazyLoad.load('app/pages/simulation/SimulationController.js');
-              }]
+              authenticate: authenticate
             }
         })
         .state('app.profile', {
@@ -100,32 +74,19 @@ myApp.config(function($stateProvider, $urlRouterProvider, $controllerProvider) {
             templateUrl: "app.profile",
             controller: 'ProfileController',
             resolve: {
-              authenticate: authenticate,
-              loadMyCtrl: ['$ocLazyLoad', function($ocLazyLoad) {
-                    return $ocLazyLoad.load(['app/pages/profile/ProfileController.js']);
-              }]
+              authenticate: authenticate
             }
         })
         
       .state('login', {
           url: "/login",
           templateUrl: "login",
-          controller: "LoginController",
-          resolve: {
-            loadMyCtrl: ['$ocLazyLoad', function($ocLazyLoad) {
-                  return $ocLazyLoad.load('app/pages/login/LoginController.js');
-            }]
-          }
+          controller: "LoginController"
       })
       .state('signup', {
           url: "/signup",
           templateUrl: "signup",
-          controller: "SignupController",
-          resolve: {
-            loadMyCtrl: ['$ocLazyLoad', function($ocLazyLoad) {
-                  return $ocLazyLoad.load('app/pages/signup/SignupController.js');
-            }]
-          }
+          controller: "SignupController"
       })
 
       function authenticate ($q, AuthService) {

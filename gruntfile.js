@@ -3,6 +3,12 @@ module.exports = function(grunt) {
     // Project configuration.
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
+        concat: {
+            dist: {
+                src: ['app/**.js', 'app/pages/**/**.js', 'app/components/**/**.js', 'app/services/**.js'],
+                dest: 'dist/concat.js'
+            }
+        },
         connect : {
             server : {
                 options : {
@@ -67,10 +73,11 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-htmlmin');
     grunt.loadNpmTasks('grunt-contrib-less');
     grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('grunt-contrib-concat');
     // grunt.loadNpmTasks('grunt-csssplit');
     // grunt.loadNpmTasks('grunt-contrib-uglify');
   
     // Default task(s).
-    grunt.registerTask('default', ['ngtemplates','less', 'connect','watch']);
+    grunt.registerTask('default', ['concat', 'ngtemplates', 'less', 'connect', 'watch']);
     
 };
