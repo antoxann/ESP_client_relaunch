@@ -4,13 +4,14 @@ angular.module('myApp').factory('RoomService', function(ParseService, $q) {
     function createRoom (roomModel) {
         var deferred = $q.defer();
 
-        var room = new Room();
-        room.set("roomName", roomModel.roomName);
-        room.set("area", roomModel.area);
-        room.set("height", roomModel.height);
-        room.set("windows", roomModel.windows);
-        room.set("tempMin", parseFloat(roomModel.tempMin));
-        room.set("tempMax", parseFloat(roomModel.tempMax));
+        var room = new Room({
+            roomName: roomModel.roomName,
+            area: roomModel.area,
+            height: roomModel.height,
+            windows: roomModel.windows,
+            tempMin: parseFloat(roomModel.tempMin),
+            tempMax: parseFloat(roomModel.tempMax)
+        });
         room.setACL(new Parse.ACL(Parse.User.current()));
         room.save(null, {
             success: function(model) {
@@ -55,11 +56,6 @@ angular.module('myApp').factory('RoomService', function(ParseService, $q) {
         var room = new Room();
         room.id = roomModel.id;
         room.set("roomName", roomModel.roomName);
-        room.set("area", roomModel.area);
-        room.set("height", roomModel.height);
-        room.set("windows", roomModel.windows);
-        room.set("tempMin", parseFloat(roomModel.tempMin));
-        room.set("tempMax", parseFloat(roomModel.tempMax));
 
         room.save({
             success: function(roomObj){
