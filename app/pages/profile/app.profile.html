@@ -30,7 +30,7 @@
                     <div class="pmbb-body p-l-30">
                         <div class="pmbb-view">
                             <dl class="dl-horizontal">
-                                <dt>First Nmae</dt>
+                                <dt>First Name</dt>
                                 <dd ng-show="user.name">{{user.name}}</dd>
                                 <dd ng-hide="user.name"> <small>Emty. Edit your profile to add information</small></dd>
                             </dl>
@@ -56,7 +56,7 @@
                             </dl>
                             <dl class="dl-horizontal">
                                 <dt>UTC time</dt>
-                                <dd ng-show="user.utcTime">{{user.utcTime}}</dd>
+                                <dd ng-show="user.utcTime">{{user.utcTime.iso | date:'medium'}}</dd>
                                 <dd ng-hide="user.utcTime"> <small>Emty. Edit your profile to add information</small></dd>
                             </dl>
                         </div>
@@ -76,6 +76,15 @@
                                 <dd>
                                     <div class="fg-line">
                                         <input type="text" class="form-control" placeholder="eg. Ivanov" ng-model="user.lastName">
+                                    </div>
+
+                                </dd>
+                            </dl>
+                            <dl class="dl-horizontal">
+                                <dt class="p-t-10">username</dt>
+                                <dd>
+                                    <div class="fg-line">
+                                        <input type="text" class="form-control" placeholder="eg. Ivanov" ng-model="user.username">
                                     </div>
 
                                 </dd>

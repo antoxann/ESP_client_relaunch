@@ -3,7 +3,7 @@ angular.module('myApp').controller("ProfileController", function ($scope, Jquery
 	var User = Parse.Object.extend("User");
 
 	$scope.user = AuthService.getCurrentUser();
-	console.log($scope.user);
+	var userOld = angular.copy($scope.user);
 
 	$scope.editProfile = function (user) {
 		var userModel = new User({
@@ -22,7 +22,7 @@ angular.module('myApp').controller("ProfileController", function ($scope, Jquery
 				growl.success('Your profile was edited successfully', { title: 'Profile updated!'});
 			},
 			error: function (user, error) {
-				console.log(error);
+				$scope.user = userOld;
 				growl.error(error.message, {title: 'WE GOT AN ERROR'});
 			}
 		});
