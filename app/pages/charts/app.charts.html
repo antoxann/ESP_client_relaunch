@@ -1,1 +1,76 @@
-users charts
+<section id="content">
+    <div class="container">
+    	<div class="row">
+    		<div class="col-lg-9 col-md-9">
+    			<div class="card">
+                    <div class="card-header">
+                        <h2>Info chart <small>Charts with measures data for the last day</small></h2>
+
+                        <ul class="actions">
+                            <li>
+                                <a href="">
+                                    <i class="zmdi zmdi-check-all"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="card-body">
+                        <div class="list-group lg-alt c-overflow">
+                        	<div id="chart"></div>
+                        </div>
+                    </div>
+                </div>
+    		</div>
+    		<div class="col-lg-3 col-md-3">
+    			<div class="card">
+                    <div class="card-header">
+                        <h2>Settings</h2>
+
+                    </div>
+
+                    <div class="card-body">
+                        <div class="lg-alt c-overflow">
+                        	<div class="input-group">
+                        		<span class="input-group-addon p-l-5 f-15">
+                        			<p class="c-black m-b-0">From:</p>  
+                        		</span>
+                        		<div class="fg-line m-l-10 p-r-25">
+                        			<input type="text" class="form-control" ng-model="fromInit" disabled>
+                        		</div>
+                        	</div>
+                        	<div class="input-group">
+                        		<span class="input-group-addon p-l-5 f-15">
+                        			<p class="c-black m-b-0">To:</p> 
+                        		</span>
+                        		<div class="fg-line m-l-10 p-r-25">
+                        			<input type="text" class="form-control" ng-model="toInit" disabled>
+                        		</div>
+                        	</div>
+
+                        	<p class="c-black f-500 m-l-10 m-b-10 m-t-10">Set another dates: </p>
+
+                            <div class="input-group form-group">
+                                <span class="input-group-addon"><i class="zmdi zmdi-calendar"></i></span>
+                                    <div class="dtp-container fg-line">
+                                    <input type="date" ng-model="newFrom">
+                                </div>
+                            </div>
+                            <div class="input-group form-group p-b-10">
+                                <span class="input-group-addon"><i class="zmdi zmdi-calendar"></i></span>
+                                    <div class="dtp-container fg-line">
+                                    <input type="date" ng-model="newTo">
+                                </div>
+                            </div>
+                            <div class="input-group p-l-15 p-b-15">
+                            	<button class="btn btn-success btn-icon-text waves-effect" ng-click="updateChart()"><i class="zmdi zmdi-refresh"></i> Update chart</button>
+                            	<button class="btn btn-success btn-icon-text waves-effect m-l-10" ng-click="today()"><i class="zmdi zmdi-refresh"></i>Today</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    		</div>
+    	</div>
+                
+    </div>
+</section>

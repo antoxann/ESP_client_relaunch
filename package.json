@@ -17,6 +17,6 @@
     "grunt-devserver": "^0.6.0"
   },
   "dependencies": {
-    "oclazyload": "^1.0.9"
+    "d3": "^3.5.17"
   }
 }
