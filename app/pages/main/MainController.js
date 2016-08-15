@@ -1,4 +1,4 @@
-angular.module('myApp').controller("MainController", function ($scope, AuthService, MeasurementService) {
+angular.module('myApp').controller("MainController", function ($scope, AuthService, MeasurementService, ParseService) {
     console.log("MainController");
     $scope.lastMeasure = [];
 

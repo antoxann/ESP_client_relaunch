@@ -1,145 +1,122 @@
-angular.module('myApp').controller("ChartsController", function ($scope, $filter, JqueryProfileService) {
-	console.log("ChartsController");
-
+angular.module('myApp').controller("ChartsController", function ($scope, $filter, RoomService) {
+	//inititate first start
     var toInit = new Date();
     var fromInit = new Date();
     toInit.setHours(23,59,59,59);
     fromInit.setHours(0,0,0,0);
+    $scope.toInit = $filter('date')(toInit, 'medium');
+    $scope.fromInit = $filter('date')(fromInit, 'medium');
 
-    genChart(0, toInit, fromInit, 0);
+    getChartData(toInit, fromInit, 0);
+
+    //get rooms for room picker
+    RoomService.getRooms().then(function (rooms) {
+        $scope.rooms = rooms;
+    }, function (error) {
+        console.log(error);
+        growl.error(error.message, {title: 'ALERT WE GOT AN ERROR'});
+    })
+
+    function getChartData(to, from, roomId) {
+    	//update variables
+        $scope.toInit = $filter('date')(to, 'medium');
+    	$scope.fromInit = $filter('date')(from, 'medium');
+
+    	if (!roomId) {
+    		roomId = 0;
+    	}
+		Parse.Cloud.run('chartData', { to: to, from: from, roomId: roomId }).then(function(res) {
+		 	var result = res.chartData.map(function (item) {
+		 		item.temp = $filter('number')(item.temp, 1);
+		 		item.presence = $filter('number')(item.presence, 0)*0.1;
+		 		return item;
+		 	})
+    		genChart(result);
+		});
+    }
+    //for correct processing roomId - it can be seted by user or not
+    function getRoomId () {
+    	var roomId;
+    	if (!$scope.room) {
+    		roomId = 0;
+    	} else {
+    		roomId = $scope.room.id;
+    	}
+    	return roomId;
+    }
 
     //for update chart with new dates
     $scope.updateChart = function () {
-    	var to = new Date($scope.newTo);
-    	var from  = new Date($scope.newFrom);
-    	to = new Date(to.setHours(23,59,59,59));
-    	from = new Date(from.setHours(0,0,0,0));
-    	genChart(0, to, from, 0);
+    	if ($scope.newTo && $scope.newFrom) {
+    		var to = new Date($scope.newTo);
+    		var from  = new Date($scope.newFrom);
+    		to = new Date(to.setHours(23,59,59,59));
+    		from = new Date(from.setHours(0,0,0,0));
+    		var roomId = getRoomId();
+    		getChartData(to, from, roomId);
+    	}
+    	
     }
 
     //for today button on the view
     $scope.today = function () {
-    	genChart(0, toInit, fromInit, 0);
+    	var roomId = getRoomId();
+    	getChartData(toInit, fromInit, roomId);
     }
 
-    //ToDo implement on backend?
-	function genChart(limit, to, from, roomId) {
-        console.log("from:"+from+" to:"+to);
+    function genChart (data) {
+    	chart = c3.generate({
+	        data: {
+	            json: data,
+	            keys: {
+	                x: 'time',
+	                value: [ 'temp','presence','hum'],
+	            },
 
-        //update variables
-        $scope.toInit = $filter('date')(to, 'medium');
-    	$scope.fromInit = $filter('date')(from, 'medium');
+	            axes: {
+	                temp: 'y',
+	                presence: 'y2',
+	                hum:'y2',
+	            },
+	            types: {
+	                hum: 'step',
+	                temp: 'area-step',
+	                presence:'bar',
+	            },
+	            colors: {
+	                temp: '#ec971f',
+	                hum: '#5bc0de',
+	        }
 
-        var measure = Parse.Object.extend("Measurement");
-        var query = new Parse.Query(measure);
+	        },
+	        axis: {
+	            x: {
+	                type: 'timeseries',
+	                tick: {
+	                    format: '%H:%M',
+	                },
+	            },
+	            y: {
+	                tick: {
+	                    format: d3.format(".2n"),
+	                },
+	                min: 15,
+	            },
 
-        if (roomId != 0) {
-            query.equalTo("roomId",{"__type":"Pointer","className":"Rooms","objectId":roomId});
-        }
+	            y2: {
+	                show: true,
+	                tick: {
+	                    format: d3.format("%")
+	                },
+	                max: 0.9,
 
-        query.lessThanOrEqualTo("createdAt", to);
-        query.greaterThanOrEqualTo("createdAt", from);
-        // query.limit(limit);
-        query.exists("macAddress");
+	            },
+	        },
+	        area: {
+	            zerobased: true,
+	        },
 
-        query.find({
-            success: function (objects) {
-            	console.log(objects);
-                var tempRes = [];
-                var temp, date, pres, hum;
-                var temps = [];
-                var hums = [];
-                //collect data array for chart
-                for (var i = 0, x = objects.length; i < x; i++) {
-                    date = objects[i].createdAt;
-                    temps[i] = $filter('number')(objects[i].get('temp'), 1);
-                    hums[i] = objects[i].get('hum')/100;
-                    pres = $filter('number')(objects[i].get('presence'), 0)*0.1;
-
-                    tempRes.push({
-                        id: objects[i].id,
-                        macAddress: objects[i].get('macAddress'),
-                        temp: temps[i],
-                        hum: hums[i],
-                        presence: pres,
-                        time: date
-                    });
-                }
-
-                chart = c3.generate({
-                    data: {
-                        json: tempRes,
-                        keys: {
-                            x: 'time',
-                            value: [ 'temp','presence','hum'],
-                        },
-
-                        axes: {
-                            temp: 'y',
-                            presence: 'y2',
-                            hum:'y2',
-                        },
-                        types: {
-                            hum: 'step',
-                            temp: 'area-step',
-                            presence:'bar',
-                        },
-                        colors: {
-                            temp: '#ec971f',
-                            hum: '#5bc0de',
-                    }
-
-                    },
-                    axis: {
-                        x: {
-                            type: 'timeseries',
-                            tick: {
-                                format: '%H:%M',
-                            },
-                        },
-                        y: {
-                            tick: {
-                                format: d3.format(".2n"),
-                            },
-                            min: 15,
-                        },
-
-                        y2: {
-                            show: true,
-                            tick: {
-                                format: d3.format("%")
-                            },
-                            max: 0.9,
-
-                        },
-
-                    },
-                    area: {
-                        zerobased: true,
-                    },
-
-                });
-
-				//calculation
-                var sumTemp = 0;
-                var sumHum= 0;
-                for (var j = 0; j < temps.length; j++) {
-                    sumTemp += parseInt(temps[j], 10);
-                    sumHum += parseInt(hums[j]*100, 10);
-                }
-
-                var avrTemp= sumTemp/temps.length;
-                var avrHum= sumHum/hums.length;
-
-                $scope.avrTemp = $filter('number')(avrTemp, 1);
-                $scope.avrHum = $filter('number')(avrHum, 1);
-                console.log($scope.avrTemp);
-                console.log($scope.avrHum);
-            },
-            error: function (error) {
-            	console.log(error);
-                growl.error(error.message, {title: 'WE GOT AN ERROR'});
-            }
-        });
+	    });
     }
+	
 });
