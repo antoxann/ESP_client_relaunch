@@ -47,40 +47,47 @@
                     <div class="modal-header">
                         <h4 class="modal-title">Add device</h4>
                     </div>
-                    <div class="modal-body">
-                        <div class="card-body card-padding">
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label">Device name</label>
-                                <div class="col-sm-9">
-                                    <div class="fg-line">
-                                        <input type="text" class="form-control input-sm" placeholder="Device name" ng-model="device.deviceName">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label">MacAddress</label>
-                                <div class="col-sm-9">
 
-                                    <div class="fg-line">
-                                        <input type="text" class="form-control input-sm" placeholder="MacAddress" ng-model="device.macAddress">
+                    <form name="deviceFrom" ng-submit="createDevice(device)" >
+                        <div class="modal-body">
+                            <div class="card-body card-padding">
+                                
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">Device name</label>
+                                    <div class="col-sm-9">
+                                        <div class="fg-line">
+                                            <input type="text" class="form-control input-sm" placeholder="Device name" ng-model="device.deviceName" required>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label">Room</label>
-                                <div class="col-sm-9">
 
-                                    <div class="fg-line">
-                                        <select class="selectpicker" ng-model="device.room" ng-options="r.roomName for r in rooms"></select>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">MacAddress</label>
+                                    <div class="col-sm-9">
+
+                                        <div class="fg-line">
+                                            <input type="text" class="form-control input-sm" placeholder="MacAddress" ng-model="device.macAddress" required>
+                                        </div>
                                     </div>
                                 </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">Room</label>
+                                    <div class="col-sm-9">
+
+                                        <div class="fg-line">
+                                            <select class="selectpicker" ng-model="device.room" ng-options="r.roomName for r in rooms" required></select>
+                                        </div>
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
-                    </div>
+
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-link" ng-click="createDevice(device)">Save device</button>
+                        <button type="submit" class="btn btn-link" ng-disabled="deviceFrom.$invalid">Save device</button>
                         <button type="button" class="btn btn-link" data-dismiss="modal">Close</button>
                     </div>
+                    </form>
                 </div>
             </div>
         </div>
