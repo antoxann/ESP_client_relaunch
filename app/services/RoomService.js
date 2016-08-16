@@ -69,10 +69,27 @@ angular.module('myApp').factory('RoomService', function(ParseService, $q) {
         return deferred.promise;
     }
 
+    function deleteRoom (roomId) {
+        var deferred = $q.defer();
+        var room = new Room();
+        room.id= roomId;
+
+        room.destroy({
+            success: function(myObject) {
+                deferred.resolve(myObject);
+            },
+            error: function(myObject, error) {
+                deferred.reject(error);
+            }
+        });
+        return deferred.promise;
+    }
+
 
     return {
         createRoom: createRoom,
         getRooms: getRooms,
-        editRoom: editRoom
+        editRoom: editRoom, 
+        deleteRoom: deleteRoom
     }
 });

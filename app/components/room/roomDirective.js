@@ -5,7 +5,7 @@ angular.module('myApp').directive('room', function() {
     bindToController: {
     	room: '=obj'
     },
-    controller: function ($scope, JqueryProfileService, growl, RoomService, AuthService, DeviceService) {
+    controller: function ($scope, JqueryProfileService, growl, RoomService, AuthService, DeviceService, $state) {
     	console.log($scope.room);
 
         $scope.user = AuthService.getCurrentUser();
@@ -24,6 +24,15 @@ angular.module('myApp').directive('room', function() {
         }, function (error) {
             console.log(error);
         });
+
+        $scope.deleteRoom = function () {
+            RoomService.deleteRoom($scope.room.id).then(function (res) {
+                $('#confirmationModal').modal('hide');
+                $state.go('app.rooms');
+            }, function (error) {
+                console.log(error);
+            });
+        }
     }
     }
 });
