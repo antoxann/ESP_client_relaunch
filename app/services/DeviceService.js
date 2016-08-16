@@ -81,10 +81,39 @@ angular.module('myApp').factory('DeviceService', function(ParseService, $q) {
         return deferred.promise;
     }
 
+    function getDevicesInRoom (roomId) {
+        var deferred = $q.defer();
+        var devices = [];
+
+        var query = new Parse.Query(Device);
+        query.equalTo("roomId",{"__type":"Pointer","className":"Room","objectId": roomId});
+        query.find({
+            success: function (results) {
+                results.forEach(function (device, index) {
+                    var tempDevice = {
+                        id: device.id,
+                        deviceName: device.get('deviceName'),
+                        roomId: device.get('roomId'),
+                        tempMin: device.get('tempMin'),
+                        tempDefault: device.get('tempDefault'),
+                        macAddress: device.get('macAddress')
+                    }
+                    devices.push(tempDevice);
+                });
+                deferred.resolve(devices);
+            },
+            error: function (error) {
+                deferred.reject(error);
+            }
+        });
+        return deferred.promise;  
+    }
+
 
     return {
         createDevice: createDevice,
         getDevices: getDevices,
-        editDevice: editDevice
+        editDevice: editDevice,
+        getDevicesInRoom: getDevicesInRoom
     }
 });

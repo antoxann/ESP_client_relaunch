@@ -5,7 +5,7 @@ angular.module('myApp').directive('room', function() {
     bindToController: {
     	room: '=obj'
     },
-    controller: function ($scope, JqueryProfileService, growl, RoomService, AuthService) {
+    controller: function ($scope, JqueryProfileService, growl, RoomService, AuthService, DeviceService) {
     	console.log($scope.room);
 
         $scope.user = AuthService.getCurrentUser();
@@ -18,6 +18,12 @@ angular.module('myApp').directive('room', function() {
                 growl.error(error.message, {title: 'WE GOT AN ERROR'});
             });
         }
+
+        DeviceService.getDevicesInRoom($scope.room.id).then(function (res) {
+            $scope.devices = res;
+        }, function (error) {
+            console.log(error);
+        });
     }
     }
 });

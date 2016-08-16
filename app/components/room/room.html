@@ -42,6 +42,10 @@
                                 <dt>Windows</dt>
                                 <dd>{{room.windows}} </dd>
                             </dl>
+                            <dl class="dl-horizontal">
+                                <dt>Devices in room:</dt>
+                                <dd ng-repeat="device in devices">Device name: {{device.deviceName}} Id: {{device.id}};  </dd>
+                            </dl>
                         </div>
 
                         <div class="pmbb-edit">
