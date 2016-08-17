@@ -8,5 +8,5 @@ angular.module('myApp').controller("MainController", function ($scope, AuthServi
     }, function (error) {
     	growl.error(error.message, {title: 'WE GOT AN ERROR'});
     });
-    
+
 });
