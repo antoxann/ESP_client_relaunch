@@ -1,4 +1,4 @@
-angular.module('myApp').controller("ChartsController", function ($scope, $filter, RoomService, growl) {
+angular.module('myApp').controller("ChartsController", ['$scope', '$filter', 'RoomService', 'growl', function ($scope, $filter, RoomService, growl) {
 	$scope.firstStart = true;
 	//inititate first start
     var toInit = new Date();
@@ -135,4 +135,4 @@ angular.module('myApp').controller("ChartsController", function ($scope, $filter
 	    });
     }
 	
-});
+}]);

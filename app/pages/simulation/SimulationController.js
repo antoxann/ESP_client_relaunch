@@ -1,4 +1,4 @@
-angular.module('myApp').controller("SimulationController", function ($scope, RoomService, $filter) {
+angular.module('myApp').controller("SimulationController", ['$scope', 'RoomService', '$filter', function ($scope, RoomService, $filter) {
 	//get rooms for room picker
     RoomService.getRooms().then(function (rooms) {
         $scope.rooms = rooms;
@@ -111,4 +111,4 @@ angular.module('myApp').controller("SimulationController", function ($scope, Roo
 	        }
 	    });
     }
-});
+}]);

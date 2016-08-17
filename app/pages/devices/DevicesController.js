@@ -1,4 +1,4 @@
-angular.module('myApp').controller("DevicesController", function ($scope, RoomService, DeviceService, growl) {
+angular.module('myApp').controller("DevicesController",['$scope', 'RoomService', 'DeviceService', 'growl', function ($scope, RoomService, DeviceService, growl) {
 	console.log("DevicesController");
 
 	$scope.getRooms = function () {
@@ -37,4 +37,4 @@ angular.module('myApp').controller("DevicesController", function ($scope, RoomSe
 	};
 	getDevices();
 	
-});
+}]);

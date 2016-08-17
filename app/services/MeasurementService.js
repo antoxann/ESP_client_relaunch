@@ -1,4 +1,4 @@
-angular.module('myApp').factory('MeasurementService', function(ParseService, DeviceService, $q) {
+angular.module('myApp').factory('MeasurementService', ['ParseService', 'DeviceService', '$q', function(ParseService, DeviceService, $q) {
     var measurement = Parse.Object.extend("Measurement");
     var devices;
     DeviceService.getDevices().then(function (devs) {
@@ -36,4 +36,4 @@ angular.module('myApp').factory('MeasurementService', function(ParseService, Dev
     return {
         getLatestMeasurement: getLatestMeasurement
     }
-});
+}]);

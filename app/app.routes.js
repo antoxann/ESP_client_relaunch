@@ -1,4 +1,4 @@
-myApp.config(function($stateProvider, $urlRouterProvider, $controllerProvider) {
+myApp.config(['$stateProvider', '$urlRouterProvider', '$controllerProvider', function($stateProvider, $urlRouterProvider, $controllerProvider) {
       
     $urlRouterProvider.otherwise("login")
     
@@ -110,4 +110,4 @@ myApp.config(function($stateProvider, $urlRouterProvider, $controllerProvider) {
             return $q.when();
         }
       }
-  })
+  }])

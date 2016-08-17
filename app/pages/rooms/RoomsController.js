@@ -1,4 +1,4 @@
-angular.module('myApp').controller("RoomsController", function ($scope, growl, RoomService) {
+angular.module('myApp').controller("RoomsController",['$scope', 'growl', 'RoomService',  function ($scope, growl, RoomService) {
 	console.log("RoomsController");
 	var Room = Parse.Object.extend("Room");
 	$scope.rooms = [];
@@ -24,4 +24,4 @@ angular.module('myApp').controller("RoomsController", function ($scope, growl, R
             growl.error(error.message, {title: 'WE GOT AN ERROR'});
         })
 	}
-});
+}]);

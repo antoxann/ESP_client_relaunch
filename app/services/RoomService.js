@@ -1,4 +1,4 @@
-angular.module('myApp').factory('RoomService', function(ParseService, $q) {
+angular.module('myApp').factory('RoomService', ['ParseService', '$q', function(ParseService, $q) {
     var Room = Parse.Object.extend("Room");
 
     function createRoom (roomModel) {
@@ -92,4 +92,4 @@ angular.module('myApp').factory('RoomService', function(ParseService, $q) {
         editRoom: editRoom, 
         deleteRoom: deleteRoom
     }
-});
+}]);

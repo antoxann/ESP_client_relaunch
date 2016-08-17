@@ -1,4 +1,4 @@
-angular.module('myApp').controller("ProfileController", function ($scope, JqueryProfileService, AuthService, growl, ParseService) {
+angular.module('myApp').controller("ProfileController",['$scope', 'JqueryProfileService', 'AuthService', 'growl', 'ParseService', function ($scope, JqueryProfileService, AuthService, growl, ParseService) {
 	console.log("ProfileController");
 	var User = Parse.Object.extend("User");
 
@@ -27,4 +27,4 @@ angular.module('myApp').controller("ProfileController", function ($scope, Jquery
 			}
 		});
 	}
-});
+}]);

@@ -1,4 +1,4 @@
-angular.module('myApp').factory('AuthService', function(ParseService, $state, growl) {
+angular.module('myApp').factory('AuthService', ['ParseService', '$state', 'growl', function(ParseService, $state, growl) {
   	var userObj = {};
 
   	function isLoggedIn () {
@@ -64,4 +64,4 @@ angular.module('myApp').factory('AuthService', function(ParseService, $state, gr
 		getCurrentUser : getCurrentUser,
 		logout : logout
 	}
-});
+}]);

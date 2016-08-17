@@ -1,4 +1,4 @@
-angular.module('myApp').controller("MainController", function ($scope, AuthService, MeasurementService, ParseService) {
+angular.module('myApp').controller("MainController",['$scope', 'AuthService', 'MeasurementService', 'ParseService', function ($scope, AuthService, MeasurementService, ParseService) {
     console.log("MainController");
     $scope.lastMeasure = [];
 
@@ -9,4 +9,4 @@ angular.module('myApp').controller("MainController", function ($scope, AuthServi
     	growl.error(error.message, {title: 'WE GOT AN ERROR'});
     });
 
-});
+}]);

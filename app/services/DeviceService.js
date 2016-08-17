@@ -1,4 +1,4 @@
-angular.module('myApp').factory('DeviceService', function(ParseService, $q) {
+angular.module('myApp').factory('DeviceService',['ParseService', '$q', function(ParseService, $q) {
     var Device = Parse.Object.extend("Device");
 
     function createDevice (deviceModel) {
@@ -116,4 +116,4 @@ angular.module('myApp').factory('DeviceService', function(ParseService, $q) {
         editDevice: editDevice,
         getDevicesInRoom: getDevicesInRoom
     }
-});
+}]);
