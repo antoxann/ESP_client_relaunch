@@ -81,6 +81,55 @@
                 </div>
     		</div>
     	</div>
+
+
+
+    	<div class="row">
+    		<div class="col-lg-9 col-md-9">
+    			<div class="card">
+                    <div class="card-header">
+                        <h2> Data: </h2>
+                    </div>
+
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Temp</th>
+                                    <th>Humidity</th>
+                                    <th>Presence</th>
+                                    <th>Created at</th>
+                                    <th>Mac address</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="item in resultData">
+                                    <td>{{item.id}}</td>
+                                    <td>{{item.temp}}</td>
+                                    <td>{{item.hum}}</td>
+                                    <td>{{item.presence}}</td>
+                                    <td>{{item.time | date: 'medium'}}</td>
+                                    <td>{{item.macAddress}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+    		</div>
+    		<div class="col-lg-3 col-md-3">
+    			<div class="card">
+                    <div class="card-header text-center">
+                        <h2>Avarage data:</h2>
+                    </div>
+
+                    <div class="card-body">
+                       <p class="m-l-10 m-b-5 text-center">Temp: {{avrTemp}} </p>
+                       <p class="m-l-10 p-b-10 text-center">Humidity: {{avrHum}} </p>
+                    </div>
+                </div>
+    		</div>
+    	</div>
                 
     </div>
 </section>

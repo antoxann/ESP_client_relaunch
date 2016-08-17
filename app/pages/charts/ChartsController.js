@@ -1,4 +1,5 @@
-angular.module('myApp').controller("ChartsController", function ($scope, $filter, RoomService) {
+angular.module('myApp').controller("ChartsController", function ($scope, $filter, RoomService, growl) {
+	$scope.firstStart = true;
 	//inititate first start
     var toInit = new Date();
     var fromInit = new Date();
@@ -26,12 +27,26 @@ angular.module('myApp').controller("ChartsController", function ($scope, $filter
     		roomId = 0;
     	}
 		Parse.Cloud.run('chartData', { to: to, from: from, roomId: roomId }).then(function(res) {
-		 	var result = res.chartData.map(function (item) {
-		 		item.temp = $filter('number')(item.temp, 1);
-		 		item.presence = $filter('number')(item.presence, 0)*0.1;
-		 		return item;
-		 	})
-    		genChart(result);
+			if (res.chartData.length > 0) {
+				var result = res.chartData.map(function (item) {
+			 		item.temp = $filter('number')(item.temp, 1);
+			 		item.presence = $filter('number')(item.presence, 0)*0.1;
+			 		return item;
+			 	})
+			 	if (!$scope.firstStart)
+			 		growl.success('Chart is updated', {title: 'Success'});
+			} else {
+				growl.warning('No data for this period or for this room. Choose another data', {title: 'Warning'});
+			}
+		 	
+	 		$scope.avrTemp = res.avrTemp.toFixed(2);
+	 		$scope.avrHum = res.avrHum.toFixed(2);
+	 		$scope.resultData = result;
+		 	
+		 	$scope.$apply();
+    		genChart($scope.resultData);
+		}, function (error) {
+			console.log(error);
 		});
     }
     //for correct processing roomId - it can be seted by user or not
@@ -65,6 +80,7 @@ angular.module('myApp').controller("ChartsController", function ($scope, $filter
     }
 
     function genChart (data) {
+    	$scope.firstStart = false;
     	chart = c3.generate({
 	        data: {
 	            json: data,
