@@ -1,12 +1,6 @@
 angular.module('myApp').directive('device', function() {
-  return {
-    restrict: 'E',
-    templateUrl: 'device',
-    bindToController: {
-    	device: '=obj'
-    },
-    controller: function ($scope, JqueryProfileService, growl, DeviceService, RoomService, AuthService) {
-    	console.log($scope.device);
+    function deviceCtrl ($scope, JqueryProfileService, growl, DeviceService, RoomService, AuthService) {
+        console.log($scope.device);
 
         $scope.user = AuthService.getCurrentUser();
 
@@ -27,5 +21,13 @@ angular.module('myApp').directive('device', function() {
             });
         }
     }
+
+  return {
+    restrict: 'E',
+    templateUrl: 'device',
+    bindToController: {
+    	device: '=obj'
+    },
+    controller: ['$scope', 'JqueryProfileService', 'growl', 'DeviceService', 'RoomService', 'AuthService', deviceCtrl]
   };
 });

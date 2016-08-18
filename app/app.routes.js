@@ -89,6 +89,9 @@ myApp.config(['$stateProvider', '$urlRouterProvider', '$controllerProvider', fun
           controller: "SignupController"
       })
 
+      authenticate.$inject = ['$q', 'AuthService', '$state', '$timeout'];
+      loggedin.$inject = ['$q', 'AuthService', '$state', '$timeout'];
+
       function authenticate ($q, AuthService, $state, $timeout) {
         if (AuthService.isLoggedIn()) {
           return $q.when();

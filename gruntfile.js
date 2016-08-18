@@ -5,7 +5,7 @@ module.exports = function(grunt) {
         pkg: grunt.file.readJSON('package.json'),
         concat: {
             dist: {
-                src: ['app/**.js', 'app/pages/**/**.js', 'app/components/**/**.js', 'app/services/**.js'],
+                src: ['app/**.js', 'app/pages/**/**.js', 'app/components/**/**.js', 'app/services/**.js', 'dist/templates.js'],
                 dest: 'dist/concat.js'
             }
         },
@@ -67,6 +67,20 @@ module.exports = function(grunt) {
                 files: ['app/**/**/**.js', 'app/**/**.js'], // which files to watch
                 tasks: ['concat']
             }
+        },
+        clean: {
+          js: ['dist/']
+        },
+        uglify: {
+            my_target: {
+              options: {
+                sourceMap: true,
+                sourceMapName: 'dist/sourcemap.map'
+              },
+              files: {
+                'dist/production.min.js': ['dist/concat.js']
+              }
+            }
         }
     });
   
@@ -79,9 +93,11 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-concat');
     // grunt.loadNpmTasks('grunt-csssplit');
-    // grunt.loadNpmTasks('grunt-contrib-uglify');
+    grunt.loadNpmTasks('grunt-contrib-uglify');
+    grunt.loadNpmTasks('grunt-contrib-clean');
   
     // Default task(s).
-    grunt.registerTask('default', ['concat', 'ngtemplates', 'less', 'connect', 'watch']);
+    grunt.registerTask('default', ['ngtemplates', 'concat', 'less', 'connect', 'watch']);
+    grunt.registerTask('prod', ['clean', 'ngtemplates','concat', 'less', 'uglify', 'connect']);
     
 };
