@@ -9,7 +9,7 @@ angular.module('myApp').directive('device', function() {
         }, function (error) {
             console.log(error);
             growl.error(error.message, {title: 'ALERT WE GOT AN ERROR'});
-        })
+        });
 
         $scope.editDevice = function (device) {
             console.log(device);

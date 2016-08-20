@@ -4,7 +4,7 @@ angular.module('myApp').controller("SimulationController", ['$scope', 'RoomServi
         $scope.rooms = rooms;
     }, function (error) {
         console.log(error);
-    })
+    });
 
     $scope.selectedRoom = "";
     $scope.days = 7;
@@ -29,7 +29,17 @@ angular.module('myApp').controller("SimulationController", ['$scope', 'RoomServi
         } else {
         	roomId = '';
         }
-        Parse.Cloud.run('simulation', { fromInit: fromInit, roomId: roomId, precision: $scope.precision, days: $scope.days, h: $scope.h, d: $scope.d, c: $scope.c, price: $scope.price, H: $scope.H})
+        Parse.Cloud.run('simulation', {
+          fromInit: fromInit,
+          roomId: roomId,
+          precision: $scope.precision,
+          days: $scope.days,
+          h: $scope.h,
+          d: $scope.d,
+          c: $scope.c,
+          price: $scope.price,
+          H: $scope.H
+        })
         .then(function(res) {
         	genChart(res.sim);
         	$scope.Tmin = res.Tmin;
@@ -39,7 +49,7 @@ angular.module('myApp').controller("SimulationController", ['$scope', 'RoomServi
             $scope.P = res.P;
 
             $scope.$apply();
-	 	})
+	 	    })
     }
 
     //initiate bild chart on page opened
