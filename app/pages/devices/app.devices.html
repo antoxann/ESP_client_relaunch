@@ -1,0 +1,97 @@
+ <section id="content">
+    <div class="container">
+        <div class="c-header">
+            <h2>Devices</h2>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-9 col-md-9">
+                <div class="col-lg-4 col-md-6" ng-repeat="device in devices">
+                    <div class="card c-dark palette-Green-A700 bg" ui-sref="app.device({device: device})">
+                        <div class="card-header">
+                            <h2> {{device.deviceName}} <small>{{device.status}} Connected|notConnected</small></h2>
+                        </div>
+                        <div class="card-body card-padding">
+                            <h4 class="m-t-0 m-b-15 c-white">
+                                <i class="zmdi zmdi-invert-colors m-r-5"></i>
+                                 Humidity {{device.tempMin}} %
+                            </h4>
+                            <h4 class="m-t-0 m-b-15 c-white">
+                                <i class="zmdi zmdi-sun m-r-5"></i>
+                                Default t: {{device.tempDefault}} C
+                            </h4>
+
+                            <div class="sparkline-1 text-center"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3 col-lg-3">
+                 <div class="card">
+                    <div class="card-header">
+                        <h2 class="text-width">Dont have device yet? <small>Create your first device right now!</small></h2>
+                    </div>
+
+                    <div class="card-body">
+                        <button class="btn palette-Light-Green bg btn-float waves-effect waves-circle waves-float"
+                                data-toggle="modal"
+                                href="#addDeviceModal"><i class="zmdi zmdi-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Add device modal -->
+        <div class="modal fade" id="addDeviceModal" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Add device</h4>
+                    </div>
+
+                    <form name="deviceFrom" ng-submit="createDevice(device)" >
+                        <div class="modal-body">
+                            <div class="card-body card-padding">
+                                
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">Device name</label>
+                                    <div class="col-sm-9">
+                                        <div class="fg-line">
+                                            <input type="text" class="form-control input-sm" placeholder="Device name" ng-model="device.deviceName" required>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">MacAddress</label>
+                                    <div class="col-sm-9">
+
+                                        <div class="fg-line">
+                                            <input type="text" class="form-control input-sm" placeholder="MacAddress" ng-model="device.macAddress" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">Room</label>
+                                    <div class="col-sm-9">
+
+                                        <div class="fg-line">
+                                            <select class="selectpicker" ng-model="device.room" ng-options="r.roomName for r in rooms" required></select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-link" ng-disabled="deviceFrom.$invalid">Save device</button>
+                        <button type="button" class="btn btn-link" data-dismiss="modal">Close</button>
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

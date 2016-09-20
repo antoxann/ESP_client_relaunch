@@ -1,0 +1,78 @@
+/*
+ * Load Main Bootstrap LESS files
+ */
+
+@import '../bower_components/bootstrap/less/bootstrap';
+
+/*
+ * LESS Plugins
+ */
+@import 'less-plugins/for';
+
+
+/*
+ * Variables and Mixin
+ */ 
+
+@import 'variables';
+@import 'mixin';
+
+/* 
+ * Load Font
+ */   
+@import 'font'; 
+ 
+/*
+ * Vendors
+ */
+@import '../bower_components/material-shadows/material-shadows';  
+@import '../bower_components/Waves/src/less/waves';
+@import '../bower_components/google-material-color/dist/palette';
+
+/* 
+ * Load Website related LESS files 
+ */  
+
+
+@import 'bootstrap-overrides';
+@import 'app/pages/layout/base';
+@import 'list';
+@import 'app/pages/layout/header'; 
+@import 'app/pages/layout/sidebar'; 
+@import 'dropdown'; 
+@import 'listview';
+
+@import 'card';
+@import 'table';
+@import 'button';
+@import 'form';
+@import 'modal';  
+@import 'app/pages/login/login';
+@import 'app/pages/layout/footer';
+@import 'skin';
+@import 'dashboard';
+@import 'misc';
+/* 
+ * for profile page 
+ */ 
+@import 'app/pages/profile/contacts';
+@import 'app/pages/profile/tabs';
+@import 'app/pages/profile/widgets';
+@import 'app/pages/profile/profile';
+
+@import 'generics';
+
+
+
+/*
+ * Vendor Overrides
+ */
+@import 'vendor-overrides/fullcalendar';
+@import 'vendor-overrides/bootgrid';
+@import 'vendor-overrides/chosen';
+@import 'vendor-overrides/noUiSlider'; 
+@import 'vendor-overrides/bootstrap-datetimepicker';
+@import 'vendor-overrides/waves';
+@import 'vendor-overrides/sweetalert';
+@import 'vendor-overrides/malihu-custom-scrollbar';
+

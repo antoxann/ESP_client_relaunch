@@ -1,0 +1,57 @@
+<section id="content">
+    <div class="container">
+        <div id="c-grid" class="clearfix" data-columns="2">
+            <div class="column size-1of2">
+                <div class="card limited">
+                    <div class="card-header">
+                        <h2>Dashboard <small>Make your first steps</small></h2>
+                    </div>
+
+                    <div class="card-body">
+                        <div class="list-group lg-alt c-overflow">
+                            <a ui-sref="app.devices" class="list-group-item media">
+                                <div class="media-body">
+                                    <div class="lgi-heading">Add your first device</div>
+                                </div>
+                            </a>
+
+                            <a ui-sref="app.rooms" class="list-group-item media">
+                                <div class="media-body">
+                                    <div class="lgi-heading">Add your first room</div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="column size-1of2">
+                <div class="card limited">
+                    <div class="card-header">
+                        <h2>Measurement <small>Your last measurement</small></h2>
+                    </div>
+                    
+                    <div class="card-body">
+                        <div class="list-group lg-alt c-overflow">
+                            <a class="list-group-item media" ng-hide="lastMeasure">
+                                <div class="media-body">
+                                    <div class="lgi-heading">You dont have measures yet</div>
+                                </div>
+                            </a>
+
+                            <a class="list-group-item media" ng-repeat="measure in lastMeasure">
+                                <div class="pull-right">
+                                    <small class="lgi-text">{{measure.time}}</small>
+                                </div>
+                                
+                                <div class="media-body">
+                                    <div class="lgi-heading">{{measure.name}}</div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

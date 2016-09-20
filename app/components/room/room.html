@@ -1,0 +1,99 @@
+<section id="content">
+    <div class="container">
+        <div class="c-header">
+            <h2>{{user.name}} {{user.lastName}}</h2>
+        </div>
+
+        <div class="card" id="room-main">
+            <div class="clearfix">
+                <div class="pmb-block">
+                    <div class="pmbb-header">
+                        <h2>Room information</h2>
+
+                        <ul class="actions">
+                            <li>
+                                <a data-pmb-action="edit" href="">Edit</a>
+                                <!-- <a  data-toggle="modal" href="#confirmationModal">Delete</a> -->
+                                <button class="btn palette-Red bg waves-effect" data-toggle="modal" href="#confirmationModal"><i class="zmdi zmdi-close"></i></button>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Confirmation modal -->
+                    <div class="modal fade" id="confirmationModal" tabindex="-1" role="dialog" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title">Confirmation</h4>
+                                </div>
+
+                                    <div class="modal-body">
+                                        <div>
+                                            <p> Are you shure? This room will be deleted.</p>
+                                        </div>
+                                    </div>
+
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-link" ng-click="deleteRoom()">Delete room</button>
+                                    <button type="button" class="btn btn-link" data-dismiss="modal">Close</button>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pmbb-body p-l-30">
+                        <div class="pmbb-view">
+                            <dl class="dl-horizontal">
+                                <dt>Room name</dt>
+                                <dd>{{room.roomName}} </dd>
+                            </dl>
+                            <dl class="dl-horizontal">
+                                <dt>TempMin</dt>
+                                <dd>{{room.tempMin}} </dd>
+                            </dl>
+                            <dl class="dl-horizontal">
+                                <dt>TempMax</dt>
+                                <dd>{{room.tempMax}} </dd>
+                            </dl>
+                            <dl class="dl-horizontal">
+                                <dt>Area</dt>
+                                <dd>{{room.area}} </dd>
+                            </dl>
+                            <dl class="dl-horizontal">
+                                <dt>Heigth</dt>
+                                <dd>{{room.height}} </dd>
+                            </dl>
+                            <dl class="dl-horizontal">
+                                <dt>Windows</dt>
+                                <dd>{{room.windows}} </dd>
+                            </dl>
+                            <dl class="dl-horizontal">
+                                <dt>Devices in room:</dt>
+                                <dd ng-repeat="device in devices">Device name: {{device.deviceName}} Id: {{device.id}};  </dd>
+                            </dl>
+                        </div>
+
+                        <div class="pmbb-edit">
+                            <dl class="dl-horizontal">
+                                <dt class="p-t-10">Room name</dt>
+                                <dd>
+                                    <div class="fg-line">
+                                        <input type="text" class="form-control" ng-model="room.roomName">
+                                    </div>
+
+                                </dd>
+                            </dl>
+
+                            <div class="m-t-30">
+                                <button class="btn btn-primary btn-sm" ng-click="editRoom(room)" data-pmb-action="reset">Save</button>
+                                <button data-pmb-action="reset" class="btn btn-primary btn-sm">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,66 @@
+<section id="content">
+    <div class="container">
+        <div class="c-header">
+            <h2>{{user.name}} {{user.lastName}}</h2>
+        </div>
+
+        <div class="card" id="room-main">
+            <div class="clearfix">
+                <div class="pmb-block">
+                    <div class="pmbb-header">
+                        <h2>Device information</h2>
+
+                        <ul class="actions">
+                            <li>
+                                <a data-pmb-action="edit" href="">Edit</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="pmbb-body p-l-30">
+                        <div class="pmbb-view">
+                            <dl class="dl-horizontal">
+                                <dt>Device name</dt>
+                                <dd>{{device.deviceName}} </dd>
+                            </dl>
+                            <dl class="dl-horizontal">
+                                <dt>Temp Min</dt>
+                                <dd>{{device.tempMin}} </dd>
+                            </dl>
+                            <dl class="dl-horizontal">
+                                <dt>Temp Default</dt>
+                                <dd>{{device.tempDefault}} </dd>
+                            </dl>
+                        </div>
+
+                        <div class="pmbb-edit">
+                            <dl class="dl-horizontal">
+                                <dt class="p-t-10">Device name</dt>
+                                <dd>
+                                    <div class="fg-line">
+                                        <input type="text" class="form-control" ng-model="device.deviceName">
+                                    </div>
+
+                                </dd>
+                            </dl>
+                            <dl class="dl-horizontal">
+                                <dt class="p-t-10">Rooms</dt>
+                                <dd>
+                                    <div class="fg-line">
+                                        <select class="selectpicker" ng-model="device.room" ng-options="r.roomName for r in rooms"></select>
+                                    </div>
+
+                                </dd>
+                            </dl>
+
+                            <div class="m-t-30">
+                                <button class="btn btn-primary btn-sm" ng-click="editDevice(device)" data-pmb-action="reset">Save</button>
+                                <button data-pmb-action="reset" class="btn btn-primary btn-sm">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>

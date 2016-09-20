@@ -1,0 +1,196 @@
+<section id="content">
+    <div class="container">
+    	<div class="row">
+    		<div class="col-lg-9 col-md-9">
+    			<div class="card">
+                    <div class="card-header">
+                        <h2>Presence simulation</h2>
+
+                        <ul class="actions">
+                            <li>
+                                <a href="">
+                                    <i class="zmdi zmdi-refresh" ng-click="updateChart()"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="card-body">
+                        <div class="list-group lg-alt c-overflow">
+                        	<div id="chart"></div>
+                        </div>
+                    </div>
+                </div>
+    		</div>
+    		<div class="col-lg-3 col-md-3">
+    			<div class="card">
+                    <div class="card-header">
+                        <h2>Settings</h2>
+
+                    </div>
+
+                    <div class="card-body">
+                        <div class="lg-alt c-overflow">
+                        	<p class="c-black f-500 m-l-10 m-b-10 m-t-10">Here you can set a new simulation for this room: </p>
+                        	<span class="input-group-addon f-15 ">Period:</span>
+                            <div class="input-group form-group m-l-10">
+                                <div class="dtp-container fg-line">
+                                    <label class="radio radio-inline m-l-10">
+		                                <input type="radio" name="inlineRadioOptions" value="2" ng-model="days">
+		                                <i class="input-helper"></i>
+		                                2 days
+		                            </label>
+		                            <label class="radio radio-inline ">
+		                                <input type="radio" name="inlineRadioOptions" value="7" ng-model="days">
+		                                <i class="input-helper"></i>
+		                                Week
+		                            </label>
+		                            <label class="radio radio-inline">
+		                                <input type="radio" name="inlineRadioOptions" value="30" ng-model="days">
+		                                <i class="input-helper"></i>
+		                                Month
+		                            </label>
+                                </div>
+                            </div>
+
+                            <span class="input-group-addon f-15">Precision:</span>
+                            <div class="input-group form-group m-l-10">
+                                <div class="dtp-container fg-line">
+                                    <label class="radio radio-inline m-l-5">
+		                                <input type="radio" name="inlineRadioOptions2" value="1" ng-model="precision">
+		                                <i class="input-helper"></i>
+		                                90%
+		                            </label>
+		                            <label class="radio radio-inline ">
+		                                <input type="radio" name="inlineRadioOptions2" value="2.5" ng-model="precision">
+		                                <i class="input-helper"></i>
+		                                75%
+		                            </label>
+                                </div>
+                            </div>
+
+                            <p class="c-black f-500 m-l-10 m-b-10 m-t-10">Select a specific room: </p>
+
+                            <div class="input-group form-group">
+                            	<span class="input-group-addon"><i class="zmdi zmdi-store"></i></span>
+                            	<div class="fg-line">
+	                                <select class="selectpicker" ng-model="selectedRoom" ng-options="r.roomName for r in rooms"></select>
+	                            </div>
+                            </div>
+
+                            <div class="input-group p-l-15 p-b-15">
+                            	<button class="btn btn-success btn-icon-text waves-effect" ng-click="updateChart()"><i class="zmdi zmdi-refresh"></i> Update chart</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    		</div>
+    	</div>
+
+    	<div class="row">
+    		<div class="col-lg-3 col-md-3">
+    			 <div class="card">
+                    <div class="card-header">
+                        <h2>Temperature: </h2>
+                    </div>
+
+                    <div class="card-body p-b-5 m-l-10">
+                        <div class="list-group lg-alt c-overflow">
+                        	<p >Tmin: {{Tmin}}°C - Tmax: {{Tmax}}°C</p>
+                        </div>
+                    </div>
+                </div>
+    		</div>
+
+    		<div class="col-lg-3 col-md-3">
+    			 <div class="card">
+                    <div class="card-header">
+                        <h2>Used energy: </h2>
+                    </div>
+
+                    <div class="card-body p-b-5 m-l-10">
+                        <div class="list-group lg-alt c-overflow">
+                        	<label>{{R}} of used energy</label>
+                        </div>
+                    </div>
+                </div>
+    		</div>
+
+    		<div class="col-lg-3 col-md-3">
+    			 <div class="card">
+                    <div class="card-header">
+                        <h2>Saved money: </h2>
+                    </div>
+
+                    <div class="card-body p-b-5 m-l-10">
+                        <div class="list-group lg-alt c-overflow">
+                        	<label>{{P}}</label>
+                        </div>
+                    </div>
+                </div>
+    		</div>
+
+    		<div class="col-lg-3 col-md-3">
+    			 <div class="card">
+                    <div class="card-header">
+                        <h2>Additional settings: </h2>
+                    </div>
+
+                    <div class="card-body">
+                        <div class="list-group lg-alt c-overflow">
+                        	<div class="input-group">
+                        		<span class="input-group-addon p-l-5 f-15">
+                        			<p class="c-black m-b-0">Height [m]:</p>
+                        		</span>
+                        		<div class="fg-line m-l-10 p-r-25">
+                        			<input type="text" class="form-control" ng-model="h">
+                        		</div>
+                        	</div>
+
+                        	<div class="input-group">
+                        		<span class="input-group-addon p-l-5 f-15">
+                        			<p class="c-black m-b-0">Density [kg/m3]:</p>
+                        		</span>
+                        		<div class="fg-line m-l-10 p-r-25">
+                        			<input type="text" class="form-control" ng-model="d">
+                        		</div>
+                        	</div>
+
+                        	<div class="input-group">
+                        		<span class="input-group-addon p-l-5 f-15">
+                        			<p class="c-black m-b-0">c [J/kg]:</p>
+                        		</span>
+                        		<div class="fg-line m-l-10 p-r-25">
+                        			<input type="text" class="form-control" ng-model="c">
+                        		</div>
+                        	</div>
+
+                        	<div class="input-group">
+                        		<span class="input-group-addon p-l-5 f-15">
+                        			<p class="c-black m-b-0">H [MJ/m3]:</p>
+                        		</span>
+                        		<div class="fg-line m-l-10 p-r-25">
+                        			<input type="text" class="form-control" ng-model="H">
+                        		</div>
+                        	</div>
+
+                        	<div class="input-group p-b-10">
+                        		<span class="input-group-addon p-l-5 f-15">
+                        			<p class="c-black m-b-0">Price [euro/m3]:</p>
+                        		</span>
+                        		<div class="fg-line m-l-10 p-r-25">
+                        			<input type="text" class="form-control" ng-model="price">
+                        		</div>
+                        	</div>
+
+                        	<div class="input-group p-l-15 p-b-15">
+                            	<button class="btn btn-success btn-icon-text waves-effect" ng-click="updateChart()"><i class="zmdi zmdi-refresh"></i> Update chart</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    		</div>
+    	</div>
+                
+    </div>
+</section>
